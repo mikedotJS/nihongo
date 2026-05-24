@@ -64,6 +64,7 @@ type Screen =
   | 'kana-test'
   | 'kana-test-review'
   | 'kana-redrill'
+  | 'kana-mini-test'
   | 'dashboard'
   | 'settings'
   | 'recto'
@@ -80,6 +81,18 @@ const EMPTY_RATINGS: Record<RatingLabel, number> = {
 
 /** Test intermédiaire toutes les N lignes drillées (cf. discussion). */
 const INTERMEDIATE_TEST_EVERY = 5;
+/** Si ≥ ce nombre d'erreurs dans un drill de 8 questions, on redrill la
+ *  même ligne au lieu d'avancer (charge cognitive : ne pas empiler du neuf
+ *  sur du fragile). */
+const DRILL_FAIL_THRESHOLD = 3;
+/** Cap d'auto-redrill d'une même ligne pour ne pas bloquer indéfiniment. */
+const DRILL_MAX_ATTEMPTS = 3;
+/** Au-dessus de ce taux d'erreur sur un test, on gate "Continuer" et on
+ *  oblige à passer par un cycle re-drill + mini-test. */
+const TEST_GATE_ERROR_RATIO = 0.3;
+/** Après N cycles consécutifs sans débloquer le gate, on relâche
+ *  ("Continuer quand même") pour ne pas bloquer l'utilisateur. */
+const TEST_GATE_MAX_CYCLES = 3;
 
 export default function App() {
   // ─── State persisté ─────────────────────────────────────────────────────
@@ -128,7 +141,15 @@ export default function App() {
     wrong: KanaItem[];
     /** true si c'était le test final (déclenche finishKana au "Continuer"). */
     isFinal: boolean;
+    /** Tant que true, "Continuer" est caché : il faut passer par re-drill + mini-test. */
+    gateActive: boolean;
+    /** Nombre de cycles re-drill+mini-test déjà tentés. Au-delà de
+     *  TEST_GATE_MAX_CYCLES, on lâche le gate (escape valve). */
+    cycle: number;
   } | null>(null);
+  /** Tentative courante sur un drill de ligne — change la `key` pour forcer
+   *  un re-mount fresh quand on relance après échec. */
+  const [drillAttempt, setDrillAttempt] = useState(0);
 
   // ─── État de session ────────────────────────────────────────────────────
   const [queue, setQueue] = useState<string[]>([]);
@@ -490,26 +511,42 @@ export default function App() {
   if (screen === 'kana-drill') {
     return (
       <KanaDrill
+        // Forcer un remount frais à chaque tentative (ou changement de ligne).
+        key={`drill-${kanaScript}-${kanaLine}-${drillAttempt}`}
         palette={palette}
         jaFont={jaFont}
         script={kanaScript}
         lineIdx={kanaLine}
-        onComplete={() => {
+        onComplete={(wrong) => {
           const drilledLine = kanaLine;
-          const isLast = drilledLine >= KANA_LINES.length - 1;
+          const drillFailed =
+            wrong.length >= DRILL_FAIL_THRESHOLD &&
+            drillAttempt < DRILL_MAX_ATTEMPTS - 1;
 
+          if (drillFailed) {
+            log.info('app', 'drill failed → redrill same line', {
+              line: drilledLine,
+              attempt: drillAttempt + 1,
+              wrongCount: wrong.length,
+            });
+            setDrillAttempt((a) => a + 1);
+            // On reste sur kana-drill, la nouvelle key déclenchera un re-mount.
+            return;
+          }
+
+          // Reset le compteur pour la prochaine ligne.
+          setDrillAttempt(0);
+
+          const isLast = drilledLine >= KANA_LINES.length - 1;
           if (isLast) {
-            // Dernier drill du script → test de sortie sur tout.
             log.info('app', 'last drill → final test');
             setKanaTestThroughLine(null);
             setScreen('kana-test');
             return;
           }
 
-          // Avance la ligne pour la suite.
           setKanaLine(drilledLine + 1);
 
-          // Test intermédiaire toutes les N lignes drillées.
           if ((drilledLine + 1) % INTERMEDIATE_TEST_EVERY === 0) {
             log.info('app', 'intermediate test', {
               throughLine: drilledLine,
@@ -542,15 +579,21 @@ export default function App() {
             kanaScript,
             kanaTestThroughLine ?? undefined,
           ).length;
+          const errorRatio = total > 0 ? wrong.length / total : 0;
+          const gateActive = errorRatio > TEST_GATE_ERROR_RATIO;
           log.info('app', 'test → review', {
             total,
             wrongCount: wrong.length,
+            errorRatio: Math.round(errorRatio * 100) + '%',
             isIntermediate,
+            gateActive,
           });
           setKanaTestResult({
             total,
             wrong,
             isFinal: !isIntermediate,
+            gateActive,
+            cycle: 0,
           });
           // Persiste chaque kana raté — accessible en re-exposition future,
           // synchronisé via `based` (table `kana_failures`).
@@ -581,9 +624,12 @@ export default function App() {
         jaFont={jaFont}
         totalQuestions={kanaTestResult.total}
         wrong={kanaTestResult.wrong}
+        gateActive={kanaTestResult.gateActive}
+        cycle={kanaTestResult.cycle}
         onReview={() => {
           log.info('app', 'review → redrill', {
             count: kanaTestResult.wrong.length,
+            cycle: kanaTestResult.cycle,
           });
           setScreen('kana-redrill');
         }}
@@ -603,6 +649,40 @@ export default function App() {
     );
   }
 
+  if (screen === 'kana-mini-test' && kanaTestResult) {
+    return (
+      <KanaTest
+        // Force un re-mount par cycle pour ne pas garder l'état de l'instance précédente.
+        key={`mini-${kanaTestResult.cycle}`}
+        palette={palette}
+        jaFont={jaFont}
+        script={kanaScript}
+        customQuestions={kanaTestResult.wrong}
+        onComplete={(stillWrong) => {
+          const nextCycle = kanaTestResult.cycle + 1;
+          const escape = nextCycle >= TEST_GATE_MAX_CYCLES;
+          // Gate levé si plus aucune erreur, OU si on a épuisé les cycles
+          // (escape valve pour ne pas bloquer indéfiniment).
+          const gateStillActive = stillWrong.length > 0 && !escape;
+          log.info('app', 'mini-test done', {
+            stillWrongCount: stillWrong.length,
+            nextCycle,
+            escape,
+            gateStillActive,
+          });
+          setKanaTestResult({
+            ...kanaTestResult,
+            wrong: stillWrong,
+            cycle: nextCycle,
+            gateActive: gateStillActive,
+          });
+          setScreen('kana-test-review');
+        }}
+        onBack={() => setScreen('kana-test-review')}
+      />
+    );
+  }
+
   if (screen === 'kana-redrill' && kanaTestResult) {
     return (
       <KanaDrill
@@ -611,8 +691,10 @@ export default function App() {
         script={kanaScript}
         customQuestions={kanaTestResult.wrong}
         onComplete={() => {
-          log.info('app', 'redrill done → back to review');
-          setScreen('kana-test-review');
+          // Wrong list du re-drill ignorée ici — on enchaîne sur un mini-test
+          // qui sera la vraie ré-évaluation (cf. phase mini-test).
+          log.info('app', 'redrill done → mini-test');
+          setScreen('kana-mini-test');
         }}
         onBack={() => setScreen('kana-test-review')}
       />

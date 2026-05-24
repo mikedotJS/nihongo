@@ -21,7 +21,11 @@ interface Props {
   total?: number;
   /** Titre affiché. Défaut dépend du mode. */
   title?: string;
-  onComplete: () => void;
+  /**
+   * Reçoit la liste des signes ratés au moins une fois pendant ce drill
+   * (dédupliquée par kana). Vide si zéro erreur.
+   */
+  onComplete: (wrong: KanaItem[]) => void;
   onBack: () => void;
 }
 
@@ -257,6 +261,8 @@ export function KanaDrill({
     chosen: string;
   } | null>(null);
   const [streak, setStreak] = useState(0);
+  // Dédupliqué par kana — un signe raté plusieurs fois ne compte qu'une fois.
+  const [wrong, setWrong] = useState<Record<string, Item>>({});
 
   const cur = drill[questionIdx];
 
@@ -273,15 +279,23 @@ export function KanaDrill({
     });
     setFeedback({ correct, chosen: c.romaji });
     setStreak((s) => (correct ? s + 1 : 0));
+    let nextWrong = wrong;
+    if (!correct) {
+      nextWrong = { ...wrong, [cur.q.kana]: cur.q };
+      setWrong(nextWrong);
+    }
     setTimeout(
       () => {
         if (questionIdx + 1 >= drill.length) {
+          const wrongList = Object.values(nextWrong);
           log.info('drill', 'complete', {
             mode: isRedrill ? 'redrill' : 'line',
             lineIdx,
             total: drill.length,
+            wrongCount: wrongList.length,
+            wrongKanas: wrongList.map((w) => w.kana),
           });
-          onComplete();
+          onComplete(wrongList);
         } else {
           setQuestionIdx((i) => i + 1);
           setFeedback(null);

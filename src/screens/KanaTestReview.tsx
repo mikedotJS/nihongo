@@ -10,6 +10,16 @@ interface Props {
   totalQuestions: number;
   /** Liste des signes ratés (dédupliquée par kana). */
   wrong: KanaItem[];
+  /**
+   * Si true, "Continuer" est caché : il faut passer par re-drill + mini-test
+   * pour le débloquer. Si false, les deux boutons sont dispo.
+   */
+  gateActive: boolean;
+  /**
+   * Nombre de cycles re-drill + mini-test déjà effectués. Affiché pour
+   * informer du progrès quand on est en consolidation.
+   */
+  cycle: number;
   /** Lance le re-drill ciblé sur les ratés. */
   onReview: () => void;
   /** Continue le flux normal (transition vers la suite). */
@@ -22,6 +32,8 @@ export function KanaTestReview({
   jaFont,
   totalQuestions,
   wrong,
+  gateActive,
+  cycle,
   onReview,
   onContinue,
   onBack,
@@ -97,7 +109,17 @@ export function KanaTestReview({
         >
           {wrong.length === 0
             ? 'Tout est passé. Tu peux continuer.'
-            : `${wrong.length} signe${wrong.length > 1 ? 's' : ''} à revoir avant de continuer — ou pas, tu décides.`}
+            : gateActive
+              ? `${wrong.length} signe${wrong.length > 1 ? 's' : ''} fragile${wrong.length > 1 ? 's' : ''} — on consolide avant d'ajouter du neuf, pour ne pas surcharger.`
+              : `${wrong.length} signe${wrong.length > 1 ? 's' : ''} à revoir avant de continuer — ou pas, tu décides.`}
+          {cycle > 0 && (
+            <>
+              <br />
+              <span style={{ opacity: 0.7 }}>
+                Cycle {cycle} de consolidation.
+              </span>
+            </>
+          )}
         </p>
 
         {wrong.length > 0 && (
@@ -163,9 +185,9 @@ export function KanaTestReview({
             lineHeight: 1.5,
           }}
         >
-          Se tromper et corriger fait partie de l’apprentissage. Pas de gate :
-          tu peux revoir les ratés maintenant ou continuer et y revenir plus
-          tard.
+          {gateActive
+            ? 'Pousser de nouveaux signes sur du fragile sature la mémoire de travail (interférence). On reprend ce qui n’est pas encore acquis, puis on continue.'
+            : 'Se tromper et corriger fait partie de l’apprentissage. Tu peux revoir les ratés maintenant ou continuer et y revenir plus tard.'}
         </div>
 
         <div style={{ height: 24 }} />
@@ -186,12 +208,14 @@ export function KanaTestReview({
             palette={palette}
           />
         )}
-        <PrimaryButton
-          label="Continuer"
-          onClick={onContinue}
-          palette={palette}
-          secondary={wrong.length > 0}
-        />
+        {(!gateActive || wrong.length === 0) && (
+          <PrimaryButton
+            label="Continuer"
+            onClick={onContinue}
+            palette={palette}
+            secondary={wrong.length > 0}
+          />
+        )}
       </div>
     </div>
   );

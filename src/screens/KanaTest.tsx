@@ -21,6 +21,16 @@ interface Props {
    */
   throughLine?: number;
   /**
+   * Si défini, ignore throughLine et utilise *exactement* ces signes comme
+   * pool de questions. Utilisé pour le **mini-test** après re-drill — on
+   * teste précisément ce qu'on vient de revoir. Distracteurs same-line.
+   */
+  customQuestions?: KanaItem[];
+  /** Titre custom (sinon dérivé du mode). */
+  title?: string;
+  /** Sous-titre custom (sinon dérivé du mode). */
+  subtitle?: string;
+  /**
    * Reçoit la liste des kana ratés en fin de test (dédupliquée).
    * Vide si tout est correct.
    */
@@ -66,6 +76,21 @@ function shuffled<T>(arr: T[]): T[] {
   return a;
 }
 
+function itemsForLine(script: KanaScript, lineIdx: number): Item[] {
+  const grid = gridFor(script);
+  const out: Item[] = [];
+  grid[lineIdx]?.forEach((ch, c) => {
+    if (ch) {
+      out.push({
+        kana: ch,
+        romaji: KANA_ROMAJI[lineIdx][c] as string,
+        lineIdx,
+      });
+    }
+  });
+  return out;
+}
+
 function buildTest(
   script: KanaScript,
   total: number,
@@ -90,37 +115,77 @@ function buildTest(
   });
 }
 
+/**
+ * Mini-test : pool = liste arbitraire de signes (typiquement les ratés du
+ * test précédent, post re-drill). Chaque signe est testé exactement une
+ * fois (pas de wrap). Distracteurs same-line en priorité (vraies
+ * confusions), fallback sur les autres candidats du mini-pool ou la ligne.
+ */
+function buildMiniTest(script: KanaScript, items: Item[]): TestStep[] {
+  if (items.length === 0) return [];
+  const questions = shuffled(items);
+  return questions.map((q) => {
+    const sameLine = itemsForLine(script, q.lineIdx);
+    const sameLineOthers = sameLine.filter((p) => p.romaji !== q.romaji);
+    let distractors = shuffled(sameLineOthers).slice(0, 3);
+    if (distractors.length < 3) {
+      const used = new Set([q.romaji, ...distractors.map((p) => p.romaji)]);
+      const extras = shuffled(
+        items.filter((p) => !used.has(p.romaji)),
+      ).slice(0, 3 - distractors.length);
+      distractors = [...distractors, ...extras];
+    }
+    return { q, choices: shuffled([...distractors, q]) };
+  });
+}
+
 export function KanaTest({
   palette,
   jaFont,
   script,
   total,
   throughLine,
+  customQuestions,
+  title,
+  subtitle,
   onComplete,
   onBack,
 }: Props) {
-  const isIntermediate = throughLine !== undefined;
-  const effectiveTotal = total ?? itemsUpTo(script, throughLine).length;
+  const isMini = !!customQuestions;
+  const isIntermediate = !isMini && throughLine !== undefined;
+  const effectiveTotal = isMini
+    ? customQuestions!.length
+    : (total ?? itemsUpTo(script, throughLine).length);
+
+  const build = (): TestStep[] => {
+    if (isMini) return buildMiniTest(script, customQuestions!);
+    return buildTest(script, effectiveTotal, throughLine);
+  };
+
   const [test, setTest] = useState<TestStep[]>(() => {
-    const built = buildTest(script, effectiveTotal, throughLine);
+    const built = build();
     log.info('test', 'mount', {
       script,
+      mode: isMini ? 'mini' : isIntermediate ? 'intermediate' : 'final',
       total: effectiveTotal,
       throughLine,
-      isIntermediate,
+      customCount: customQuestions?.length,
       built: built.length,
       sequence: built.map((s) => s.q.romaji),
     });
     return built;
   });
-  const [testKey, setTestKey] = useState(`${script}:${effectiveTotal}:${throughLine ?? 'all'}`);
-  const wantedKey = `${script}:${effectiveTotal}:${throughLine ?? 'all'}`;
+  const customKey = customQuestions?.map((q) => q.kana).join('|') ?? '';
+  const wantedKey = `${script}:${effectiveTotal}:${throughLine ?? 'all'}:${customKey}`;
+  const [testKey, setTestKey] = useState(wantedKey);
   if (testKey !== wantedKey) {
-    const built = buildTest(script, effectiveTotal, throughLine);
+    const built = build();
     log.info('test', 'rebuild (params changed)', {
       script,
+      mode: isMini ? 'mini' : isIntermediate ? 'intermediate' : 'final',
       total: effectiveTotal,
       throughLine,
+      customCount: customQuestions?.length,
       sequence: built.map((s) => s.q.romaji),
     });
     setTest(built);
@@ -190,9 +255,12 @@ export function KanaTest({
         palette={palette}
         onBack={onBack}
         title={
-          isIntermediate
-            ? `Récap · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`
-            : `Test · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`
+          title ??
+          (isMini
+            ? `Mini-test · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`
+            : isIntermediate
+              ? `Récap · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`
+              : `Test · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`)
         }
         right={
           <span
@@ -231,7 +299,11 @@ export function KanaTest({
 
       <div style={{ padding: '20px 24px 0' }}>
         <SectionLabel color={palette.mute}>
-          {isIntermediate ? 'Test intermédiaire' : 'Phase 3 · Test de sortie'}
+          {isMini
+            ? 'Mini-test de consolidation'
+            : isIntermediate
+              ? 'Test intermédiaire'
+              : 'Phase 3 · Test de sortie'}
         </SectionLabel>
         <p
           style={{
@@ -241,11 +313,14 @@ export function KanaTest({
             lineHeight: 1.4,
           }}
         >
-          {isIntermediate
-            ? `Récap de ce que tu viens d’apprendre — ${effectiveTotal} signes.`
-            : script === 'katakana'
-              ? 'Une seule passe. Le vocabulaire s’ouvre ensuite.'
-              : 'Une seule passe. Les katakana suivent.'}
+          {subtitle ??
+            (isMini
+              ? `Re-test sur les ${effectiveTotal} signes que tu viens de revoir. Zéro erreur = on continue.`
+              : isIntermediate
+                ? `Récap de ce que tu viens d’apprendre — ${effectiveTotal} signes.`
+                : script === 'katakana'
+                  ? 'Une seule passe. Le vocabulaire s’ouvre ensuite.'
+                  : 'Une seule passe. Les katakana suivent.')}
         </p>
       </div>
 
