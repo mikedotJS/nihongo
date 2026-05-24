@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { ScriptToggle } from '../components/ScriptToggle';
 import { SectionLabel } from '../components/SectionLabel';
@@ -17,6 +16,9 @@ interface Props {
   jaFont: string;
   script: KanaScript;
   onScriptChange?: (s: KanaScript) => void;
+  /** Ligne en cours (0..KANA_LINES.length-1). Contrôlé par App. */
+  line: number;
+  onLineChange: (line: number) => void;
   onNext: (next: 'drill' | 'test') => void;
   onBack: () => void;
 }
@@ -26,10 +28,11 @@ export function KanaDiscovery({
   jaFont,
   script,
   onScriptChange,
+  line,
+  onLineChange,
   onNext,
   onBack,
 }: Props) {
-  const [line, setLine] = useState(0);
   const cur = KANA_LINES[line];
   const grid = script === 'katakana' ? KATAKANA_GRID : KANA_GRID;
   const items = grid[cur.idx]
@@ -127,7 +130,7 @@ export function KanaDiscovery({
             lineHeight: 1.5,
           }}
         >
-          Cinq nouveaux signes. Prends ton temps — il n’y a rien à valider.
+          {cur.note ?? 'Cinq nouveaux signes. Prends ton temps — il n’y a rien à valider.'}
         </p>
       </div>
 
@@ -192,7 +195,7 @@ export function KanaDiscovery({
         }}
       >
         <button
-          onClick={() => setLine((l) => Math.max(0, l - 1))}
+          onClick={() => onLineChange(Math.max(0, line - 1))}
           disabled={line === 0}
           style={{
             width: 56,
@@ -222,14 +225,25 @@ export function KanaDiscovery({
         <div style={{ flex: 1 }}>
           <PrimaryButton
             label={
-              line < KANA_LINES.length - 1 ? 'Drill cette ligne' : 'Passer au test'
+              items.length >= 2
+                ? 'Drill cette ligne'
+                : line >= KANA_LINES.length - 1
+                  ? 'Passer au test'
+                  : 'Continuer'
             }
             onClick={() => {
-              if (line < KANA_LINES.length - 1) {
+              if (items.length >= 2) {
+                // Drill normal — la transition vers le test (intermédiaire
+                // ou final) est décidée par App quand le drill se termine.
                 onNext('drill');
-                setLine((l) => Math.min(KANA_LINES.length - 1, l + 1));
-              } else {
+              } else if (line >= KANA_LINES.length - 1) {
+                // Ligne unique et finale (cas théorique pour cette config) :
+                // pas de drill possible, on saute au test final.
                 onNext('test');
+              } else {
+                // Ligne à un seul signe (ex. ん) au milieu du parcours :
+                // on avance la ligne, pas de drill.
+                onLineChange(line + 1);
               }
             }}
             palette={palette}

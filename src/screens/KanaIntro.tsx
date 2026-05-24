@@ -31,7 +31,7 @@ const PHASES = [
     ja: '通過',
     jaR: 'tsūka',
     title: 'Test de sortie',
-    sub: 'Les 46 signes. Le vocabulaire s’ouvre ensuite.',
+    sub: 'Tous les signes — base + dakuten/handakuten. Le vocabulaire s’ouvre ensuite.',
   },
 ];
 
@@ -61,7 +61,7 @@ export function KanaIntro({ palette, jaFont, script, onScriptChange, onStart }: 
           textWrap: 'pretty',
         }}
       >
-        46 signes. Une à deux semaines.
+        71 signes. Une à deux semaines.
       </h1>
       <p
         style={{

@@ -1,79 +1,171 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { SectionLabel } from '../components/SectionLabel';
 import { TopBar } from '../components/TopBar';
 import { KANA_GRID, KANA_ROMAJI, KATAKANA_GRID } from '../data/kana';
+import type { KanaItem } from '../data/kana';
+import { log } from '../lib/log';
 import type { KanaScript, PaletteTokens } from '../types';
 
 interface Props {
   palette: PaletteTokens;
   jaFont: string;
   script: KanaScript;
-  /** Brief : « les 46 signes ». Maintenu configurable pour la démo. */
+  /**
+   * Nombre de questions du test. Défaut = taille du pool.
+   */
   total?: number;
-  onComplete: () => void;
+  /**
+   * Si défini, limite le pool aux lignes 0..throughLine (inclusif).
+   * Utilisé pour les **tests intermédiaires** (récap de ce qu'on vient
+   * d'apprendre). Si non défini → test de sortie sur tous les signes.
+   */
+  throughLine?: number;
+  /**
+   * Reçoit la liste des kana ratés en fin de test (dédupliquée).
+   * Vide si tout est correct.
+   */
+  onComplete: (wrong: KanaItem[]) => void;
   onBack: () => void;
 }
 
-interface Item {
-  kana: string;
-  romaji: string;
+type Item = KanaItem;
+
+interface TestStep {
+  q: Item;
+  choices: Item[];
+}
+
+function gridFor(script: KanaScript) {
+  return script === 'katakana' ? KATAKANA_GRID : KANA_GRID;
+}
+
+function itemsUpTo(script: KanaScript, throughLine?: number): Item[] {
+  const grid = gridFor(script);
+  const limit = throughLine ?? grid.length - 1;
+  const out: Item[] = [];
+  for (let r = 0; r <= limit; r++) {
+    grid[r]?.forEach((ch, c) => {
+      if (ch) {
+        out.push({
+          kana: ch,
+          romaji: KANA_ROMAJI[r][c] as string,
+          lineIdx: r,
+        });
+      }
+    });
+  }
+  return out;
+}
+
+function shuffled<T>(arr: T[]): T[] {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildTest(
+  script: KanaScript,
+  total: number,
+  throughLine?: number,
+): TestStep[] {
+  const pool = itemsUpTo(script, throughLine);
+  if (pool.length === 0) return [];
+
+  // Sans répétition tant qu'on a assez de pool. Si total > pool.length on
+  // wrap (rare en pratique : pool = 71, demande typique ≤ 71).
+  const questions: Item[] = [];
+  let bag = shuffled(pool);
+  for (let i = 0; i < total; i++) {
+    if (bag.length === 0) bag = shuffled(pool);
+    questions.push(bag.pop()!);
+  }
+
+  return questions.map((q) => {
+    const others = pool.filter((p) => p.romaji !== q.romaji);
+    const distractors = shuffled(others).slice(0, 3);
+    return { q, choices: shuffled([...distractors, q]) };
+  });
 }
 
 export function KanaTest({
   palette,
   jaFont,
   script,
-  total = 10,
+  total,
+  throughLine,
   onComplete,
   onBack,
 }: Props) {
-  const grid = script === 'katakana' ? KATAKANA_GRID : KANA_GRID;
-  const pool: Item[] = useMemo(() => {
-    const all: Item[] = [];
-    grid.forEach((row, r) => {
-      row.forEach((ch, c) => {
-        if (ch) all.push({ kana: ch, romaji: KANA_ROMAJI[r][c] as string });
-      });
+  const isIntermediate = throughLine !== undefined;
+  const effectiveTotal = total ?? itemsUpTo(script, throughLine).length;
+  const [test, setTest] = useState<TestStep[]>(() => {
+    const built = buildTest(script, effectiveTotal, throughLine);
+    log.info('test', 'mount', {
+      script,
+      total: effectiveTotal,
+      throughLine,
+      isIntermediate,
+      built: built.length,
+      sequence: built.map((s) => s.q.romaji),
     });
-    return all;
-  }, [grid]);
+    return built;
+  });
+  const [testKey, setTestKey] = useState(`${script}:${effectiveTotal}:${throughLine ?? 'all'}`);
+  const wantedKey = `${script}:${effectiveTotal}:${throughLine ?? 'all'}`;
+  if (testKey !== wantedKey) {
+    const built = buildTest(script, effectiveTotal, throughLine);
+    log.info('test', 'rebuild (params changed)', {
+      script,
+      total: effectiveTotal,
+      throughLine,
+      sequence: built.map((s) => s.q.romaji),
+    });
+    setTest(built);
+    setTestKey(wantedKey);
+  }
 
   const [qIdx, setQIdx] = useState(0);
   const [feedback, setFeedback] = useState<{
     correct: boolean;
     chosen: string;
   } | null>(null);
+  // Map kana→Item des items ratés. On dédoublonne par kana (le même signe
+  // peut tomber 2× dans la séquence ; un seul échec suffit pour le marquer
+  // comme à revoir).
+  const [wrong, setWrong] = useState<Record<string, Item>>({});
 
-  const seq: Item[] = useMemo(() => {
-    const seeded = (i: number) =>
-      Math.floor(((i * 16807) % 2147483647) / 2147483647 * pool.length);
-    return Array.from({ length: total }, (_, i) => pool[seeded(i + 1)]);
-  }, [pool, total]);
-
-  const cur = seq[qIdx];
-
-  const choices: Item[] = useMemo(() => {
-    if (!cur) return [];
-    const others = pool.filter((p) => p.romaji !== cur.romaji);
-    const seed = qIdx * 53;
-    const picks: Item[] = [];
-    for (let i = 0; i < 3; i++) {
-      const idx = (seed + i * 11) % others.length;
-      const pick = others[idx];
-      if (!picks.find((p) => p.romaji === pick.romaji)) picks.push(pick);
-      else picks.push(others[(idx + 1) % others.length]);
-    }
-    return [...picks, cur].sort((a, b) => a.romaji.localeCompare(b.romaji));
-  }, [qIdx, cur, pool]);
+  const cur = test[qIdx];
 
   const choose = (c: Item) => {
-    if (feedback) return;
-    const correct = c.romaji === cur.romaji;
+    if (feedback || !cur) return;
+    const correct = c.romaji === cur.q.romaji;
+    log.debug('test', 'choose', {
+      qIdx,
+      kana: cur.q.kana,
+      expected: cur.q.romaji,
+      chosen: c.romaji,
+      correct,
+    });
     setFeedback({ correct, chosen: c.romaji });
+    let nextWrong = wrong;
+    if (!correct) {
+      nextWrong = { ...wrong, [cur.q.kana]: cur.q };
+      setWrong(nextWrong);
+    }
     setTimeout(
       () => {
-        if (qIdx + 1 >= total) onComplete();
-        else {
+        if (qIdx + 1 >= test.length) {
+          const wrongList = Object.values(nextWrong);
+          log.info('test', 'complete', {
+            total: test.length,
+            wrong: wrongList.length,
+            wrongKanas: wrongList.map((w) => w.kana),
+          });
+          onComplete(wrongList);
+        } else {
           setQIdx((i) => i + 1);
           setFeedback(null);
         }
@@ -83,7 +175,7 @@ export function KanaTest({
   };
 
   if (!cur) return null;
-  const pct = Math.round((qIdx / total) * 100);
+  const pct = Math.round((qIdx / test.length) * 100);
 
   return (
     <div
@@ -97,7 +189,11 @@ export function KanaTest({
       <TopBar
         palette={palette}
         onBack={onBack}
-        title={script === 'katakana' ? 'Test · Katakana' : 'Test · Hiragana'}
+        title={
+          isIntermediate
+            ? `Récap · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`
+            : `Test · ${script === 'katakana' ? 'Katakana' : 'Hiragana'}`
+        }
         right={
           <span
             style={{
@@ -107,7 +203,7 @@ export function KanaTest({
               fontVariantNumeric: 'tabular-nums',
             }}
           >
-            {qIdx}/{total}
+            {qIdx}/{test.length}
           </span>
         }
       />
@@ -134,7 +230,9 @@ export function KanaTest({
       </div>
 
       <div style={{ padding: '20px 24px 0' }}>
-        <SectionLabel color={palette.mute}>Phase 3 · Test de sortie</SectionLabel>
+        <SectionLabel color={palette.mute}>
+          {isIntermediate ? 'Test intermédiaire' : 'Phase 3 · Test de sortie'}
+        </SectionLabel>
         <p
           style={{
             fontSize: 13,
@@ -143,9 +241,11 @@ export function KanaTest({
             lineHeight: 1.4,
           }}
         >
-          {script === 'katakana'
-            ? 'Une seule passe. Le vocabulaire s’ouvre ensuite.'
-            : 'Une seule passe. Les katakana suivent.'}
+          {isIntermediate
+            ? `Récap de ce que tu viens d’apprendre — ${effectiveTotal} signes.`
+            : script === 'katakana'
+              ? 'Une seule passe. Le vocabulaire s’ouvre ensuite.'
+              : 'Une seule passe. Les katakana suivent.'}
         </p>
       </div>
 
@@ -175,7 +275,7 @@ export function KanaTest({
             animation: 'fadeInUp 0.24s cubic-bezier(0.2, 0.7, 0.3, 1)',
           }}
         >
-          {cur.kana}
+          {cur.q.kana}
         </div>
       </div>
 
@@ -187,9 +287,9 @@ export function KanaTest({
           gap: 10,
         }}
       >
-        {choices.map((c, i) => {
+        {cur.choices.map((c, i) => {
           const isChosen = feedback && feedback.chosen === c.romaji;
-          const isCorrect = c.romaji === cur.romaji;
+          const isCorrect = c.romaji === cur.q.romaji;
           let bg = palette.surface,
             fg = palette.ink,
             bd = palette.line;

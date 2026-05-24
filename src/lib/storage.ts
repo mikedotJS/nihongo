@@ -1,5 +1,12 @@
 import { get, set, del, keys } from 'idb-keyval';
-import type { DailyRecord, Progress, ReviewState, Settings } from '../types';
+import type {
+  DailyRecord,
+  KanaFailure,
+  KanaScript,
+  Progress,
+  ReviewState,
+  Settings,
+} from '../types';
 
 /**
  * Couche de persistance locale. Source de vérité runtime.
@@ -14,6 +21,7 @@ const KEY_PROGRESS = 'progress';
 const KEY_SESSION = 'session';
 const KEY_REVIEW_PREFIX = 'review:';
 const KEY_DAILY_PREFIX = 'daily:';
+const KEY_KANA_FAIL_PREFIX = 'kanafail:';
 
 export const DEFAULT_SETTINGS: Settings = {
   newCardsPerDay: 10,
@@ -27,6 +35,8 @@ export const DEFAULT_PROGRESS: Progress = {
   kanaCompleted: false,
   onboardingDone: false,
   activeSessionStartedAt: null,
+  kanaLine: 0,
+  kanaScript: 'hiragana',
   updatedAt: 0,
 };
 
@@ -133,6 +143,49 @@ export async function incrementDailyCount(date: Date): Promise<DailyRecord> {
   };
   await set(key, next);
   return next;
+}
+
+// ─── Kana failures ────────────────────────────────────────────────────────
+
+export function kanaFailureId(script: KanaScript, kana: string): string {
+  return `${script}:${kana}`;
+}
+
+export async function saveKanaFailure(failure: KanaFailure): Promise<void> {
+  await set(KEY_KANA_FAIL_PREFIX + failure.id, failure);
+}
+
+export async function loadKanaFailure(
+  script: KanaScript,
+  kana: string,
+): Promise<KanaFailure | undefined> {
+  return (await get(KEY_KANA_FAIL_PREFIX + kanaFailureId(script, kana))) as
+    | KanaFailure
+    | undefined;
+}
+
+export async function deleteKanaFailure(
+  script: KanaScript,
+  kana: string,
+): Promise<void> {
+  await del(KEY_KANA_FAIL_PREFIX + kanaFailureId(script, kana));
+}
+
+export async function loadAllKanaFailures(): Promise<KanaFailure[]> {
+  const allKeys = await keys();
+  const out: KanaFailure[] = [];
+  await Promise.all(
+    allKeys
+      .filter(
+        (k): k is string =>
+          typeof k === 'string' && k.startsWith(KEY_KANA_FAIL_PREFIX),
+      )
+      .map(async (k) => {
+        const f = (await get(k)) as KanaFailure | undefined;
+        if (f) out.push(f);
+      }),
+  );
+  return out;
 }
 
 /** Renvoie les `n` derniers jours, du plus ancien au plus récent (inclusif). */

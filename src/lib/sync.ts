@@ -1,16 +1,21 @@
 import { getBased } from './based';
+import { log } from './log';
 import {
+  loadAllKanaFailures,
   loadAllReviewStates,
   loadDailyRecord,
   loadProgress,
   loadSettings,
   saveDailyRecord,
+  saveKanaFailure,
   saveProgress,
   saveReviewState,
   saveSettings,
 } from './storage';
 import type {
   DailyRecord,
+  KanaFailure,
+  KanaScript,
   PaletteId,
   Progress,
   ReviewState,
@@ -37,12 +42,14 @@ import type { Card as FSRSCard } from 'ts-fsrs';
 
 const SINGLETON_ID = 'me';
 
-/** Renvoie le pourcentage [0,1] de réussite d'une opération réseau. */
-async function silentTry<T>(op: () => Promise<T>): Promise<T | null> {
+/** Wrapper qui avale les erreurs réseau (sync best-effort) et les log. */
+async function silentTry<T>(label: string, op: () => Promise<T>): Promise<T | null> {
   try {
-    return await op();
+    const out = await op();
+    log.debug('sync', `${label} → ok`);
+    return out;
   } catch (err) {
-    if (import.meta.env.DEV) console.warn('[sync]', err);
+    log.warn('sync', `${label} → fail`, err);
     return null;
   }
 }
@@ -52,7 +59,7 @@ async function silentTry<T>(op: () => Promise<T>): Promise<T | null> {
 export function pushSettings(s: Settings): void {
   const client = getBased();
   if (!client) return;
-  void silentTry(() =>
+  void silentTry('push settings', () =>
     client.from('settings').upsert({
       id: SINGLETON_ID,
       newCardsPerDay: s.newCardsPerDay,
@@ -67,12 +74,29 @@ export function pushSettings(s: Settings): void {
 export function pushProgress(p: Progress): void {
   const client = getBased();
   if (!client) return;
-  void silentTry(() =>
+  void silentTry('push progress', () =>
     client.from('progress').upsert({
       id: SINGLETON_ID,
       kanaCompleted: p.kanaCompleted ? 1 : 0,
       onboardingDone: p.onboardingDone ? 1 : 0,
+      kanaLine: p.kanaLine,
+      kanaScript: p.kanaScript,
       clientUpdatedAt: p.updatedAt,
+    }),
+  );
+}
+
+export function pushKanaFailure(f: KanaFailure): void {
+  const client = getBased();
+  if (!client) return;
+  void silentTry(`push kana_failure ${f.id}`, () =>
+    client.from('kana_failures').upsert({
+      id: f.id,
+      script: f.script,
+      kana: f.kana,
+      romaji: f.romaji,
+      lineIdx: f.lineIdx,
+      clientUpdatedAt: f.updatedAt,
     }),
   );
 }
@@ -80,8 +104,8 @@ export function pushProgress(p: Progress): void {
 export function pushReviewState(state: ReviewState): void {
   const client = getBased();
   if (!client) return;
-  void silentTry(() =>
-    client.from('reviewStates').upsert({
+  void silentTry(`push review ${state.wordId}`, () =>
+    client.from('review_states').upsert({
       id: state.wordId,
       fsrs: serializeFsrs(state.fsrs),
       phase: state.phase,
@@ -93,8 +117,8 @@ export function pushReviewState(state: ReviewState): void {
 export function pushDailyRecord(record: DailyRecord): void {
   const client = getBased();
   if (!client) return;
-  void silentTry(() =>
-    client.from('dailyCounts').upsert({
+  void silentTry(`push daily ${record.date}`, () =>
+    client.from('daily_counts').upsert({
       id: record.date,
       count: record.count,
       clientUpdatedAt: record.updatedAt,
@@ -110,6 +134,8 @@ export interface PullResult {
   reviewStates: Record<string, ReviewState>;
   /** Map date → count, dont seuls les enregistrements changés sont présents. */
   daily: Record<string, DailyRecord>;
+  /** Map id → failure, mêmes règles que ci-dessus. */
+  kanaFailures: Record<string, KanaFailure>;
 }
 
 /**
@@ -127,16 +153,19 @@ export async function pullAndMerge(): Promise<PullResult> {
     progress: null,
     reviewStates: {},
     daily: {},
+    kanaFailures: {},
   };
   const client = getBased();
   if (!client) return empty;
 
-  await silentTry(() => client.ready());
+  log.info('sync', 'pullAndMerge start');
+  await silentTry('client ready', () => client.ready());
 
-  const [settings, progress, allReviewStates] = await Promise.all([
+  const [settings, progress, allReviewStates, localFailures] = await Promise.all([
     loadSettings(),
     loadProgress(),
     loadAllReviewStates(),
+    loadAllKanaFailures(),
   ]);
 
   const result: PullResult = {
@@ -144,10 +173,11 @@ export async function pullAndMerge(): Promise<PullResult> {
     progress: null,
     reviewStates: {},
     daily: {},
+    kanaFailures: {},
   };
 
   // settings (singleton)
-  const remoteS = await silentTry(() =>
+  const remoteS = await silentTry('pull settings', () =>
     client.from('settings').get(SINGLETON_ID),
   );
   if (remoteS && remoteS.clientUpdatedAt > settings.updatedAt) {
@@ -165,14 +195,18 @@ export async function pullAndMerge(): Promise<PullResult> {
   }
 
   // progress (singleton)
-  const remoteP = await silentTry(() =>
+  const remoteP = await silentTry('pull progress', () =>
     client.from('progress').get(SINGLETON_ID),
   );
   if (remoteP && remoteP.clientUpdatedAt > progress.updatedAt) {
     const next: Progress = {
       kanaCompleted: remoteP.kanaCompleted !== 0,
       onboardingDone: remoteP.onboardingDone !== 0,
+      // activeSessionStartedAt reste **local** (jamais synchro — c'est le
+      // marqueur de session en cours sur ce device).
       activeSessionStartedAt: progress.activeSessionStartedAt,
+      kanaLine: remoteP.kanaLine ?? 0,
+      kanaScript: (remoteP.kanaScript as KanaScript | null) ?? 'hiragana',
       updatedAt: remoteP.clientUpdatedAt,
     };
     await saveProgress(next);
@@ -183,8 +217,8 @@ export async function pullAndMerge(): Promise<PullResult> {
 
   // review states — page tout (deck < 2000 lignes en v1, pas besoin de
   // pagination — on relèvera si le deck explose)
-  const remoteReviews = await silentTry(() =>
-    client.from('reviewStates').select({ limit: 5000 }),
+  const remoteReviews = await silentTry('pull review_states', () =>
+    client.from('review_states').select({ limit: 5000 }),
   );
   if (remoteReviews) {
     const remoteById = new Map(remoteReviews.data.map((r) => [r.id, r]));
@@ -210,8 +244,8 @@ export async function pullAndMerge(): Promise<PullResult> {
   }
 
   // daily counts — pull all, merge
-  const remoteDaily = await silentTry(() =>
-    client.from('dailyCounts').select({ limit: 5000 }),
+  const remoteDaily = await silentTry('pull daily_counts', () =>
+    client.from('daily_counts').select({ limit: 5000 }),
   );
   if (remoteDaily) {
     for (const r of remoteDaily.data) {
@@ -230,6 +264,43 @@ export async function pullAndMerge(): Promise<PullResult> {
     }
   }
 
+  // kana_failures — pull all + merge
+  const remoteFailures = await silentTry('pull kana_failures', () =>
+    client.from('kana_failures').select({ limit: 5000 }),
+  );
+  if (remoteFailures) {
+    const localById = new Map(localFailures.map((f) => [f.id, f]));
+    for (const r of remoteFailures.data) {
+      const local = localById.get(r.id);
+      if (!local || r.clientUpdatedAt > local.updatedAt) {
+        const next: KanaFailure = {
+          id: r.id,
+          script: r.script as KanaScript,
+          kana: r.kana,
+          romaji: r.romaji,
+          lineIdx: r.lineIdx,
+          updatedAt: r.clientUpdatedAt,
+        };
+        await saveKanaFailure(next);
+        result.kanaFailures[r.id] = next;
+      }
+    }
+    const remoteById = new Map(remoteFailures.data.map((r) => [r.id, r]));
+    for (const local of localFailures) {
+      const remote = remoteById.get(local.id);
+      if (!remote || local.updatedAt > remote.clientUpdatedAt) {
+        pushKanaFailure(local);
+      }
+    }
+  }
+
+  log.info('sync', 'pullAndMerge done', {
+    settingsUpdated: !!result.settings,
+    progressUpdated: !!result.progress,
+    reviewStatesUpdated: Object.keys(result.reviewStates).length,
+    dailyUpdated: Object.keys(result.daily).length,
+    kanaFailuresUpdated: Object.keys(result.kanaFailures).length,
+  });
   return result;
 }
 

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SEED_DECK } from './data/deck';
+import { KANA_LINES, kanaItemsUpTo, type KanaItem } from './data/kana';
 import { getJaFont, getPalette } from './lib/theme';
 import {
   DEFAULT_PROGRESS,
@@ -7,11 +8,13 @@ import {
   clearSession,
   formatLocalDate,
   incrementDailyCount,
+  kanaFailureId,
   loadAllReviewStates,
   loadLastNDays,
   loadProgress,
   loadSession,
   loadSettings,
+  saveKanaFailure,
   saveProgress,
   saveReviewState,
   saveSession,
@@ -26,10 +29,12 @@ import {
 import {
   pullAndMerge,
   pushDailyRecord,
+  pushKanaFailure,
   pushProgress,
   pushReviewState,
   pushSettings,
 } from './lib/sync';
+import { log } from './lib/log';
 import { CardRecto } from './screens/CardRecto';
 import { CardVerso } from './screens/CardVerso';
 import { Dashboard, type DailyEntry } from './screens/Dashboard';
@@ -38,6 +43,7 @@ import { KanaDiscovery } from './screens/KanaDiscovery';
 import { KanaDrill } from './screens/KanaDrill';
 import { KanaIntro } from './screens/KanaIntro';
 import { KanaTest } from './screens/KanaTest';
+import { KanaTestReview } from './screens/KanaTestReview';
 import { Onboarding } from './screens/Onboarding';
 import { SessionEnd } from './screens/SessionEnd';
 import { Settings as SettingsScreen } from './screens/Settings';
@@ -56,6 +62,8 @@ type Screen =
   | 'kana-discovery'
   | 'kana-drill'
   | 'kana-test'
+  | 'kana-test-review'
+  | 'kana-redrill'
   | 'dashboard'
   | 'settings'
   | 'recto'
@@ -69,6 +77,9 @@ const EMPTY_RATINGS: Record<RatingLabel, number> = {
   Correct: 0,
   Facile: 0,
 };
+
+/** Test intermédiaire toutes les N lignes drillées (cf. discussion). */
+const INTERMEDIATE_TEST_EVERY = 5;
 
 export default function App() {
   // ─── State persisté ─────────────────────────────────────────────────────
@@ -96,8 +107,28 @@ export default function App() {
   const jaFont = getJaFont(settings.jaFont);
 
   // ─── Navigation ─────────────────────────────────────────────────────────
-  const [screen, setScreen] = useState<Screen>('loading');
+  const [screen, setScreenRaw] = useState<Screen>('loading');
+  const setScreen = (next: Screen) => {
+    log.debug('app', 'screen →', next);
+    setScreenRaw(next);
+  };
   const [kanaScript, setKanaScript] = useState<KanaScript>('hiragana');
+  // Index de la ligne kana en cours. Lifté hors de KanaDiscovery pour que
+  // le drill sache *quelle* ligne vient d'être apprise.
+  const [kanaLine, setKanaLine] = useState(0);
+  // Si défini, le prochain `kana-test` est intermédiaire (récap des lignes
+  // 0..N drillées jusqu'ici). Sinon, test de sortie sur tout le script.
+  const [kanaTestThroughLine, setKanaTestThroughLine] = useState<number | null>(
+    null,
+  );
+  // Résultat du dernier test (intermédiaire ou final) — alimente l'écran
+  // de review et le re-drill ciblé.
+  const [kanaTestResult, setKanaTestResult] = useState<{
+    total: number;
+    wrong: KanaItem[];
+    /** true si c'était le test final (déclenche finishKana au "Continuer"). */
+    isFinal: boolean;
+  } | null>(null);
 
   // ─── État de session ────────────────────────────────────────────────────
   const [queue, setQueue] = useState<string[]>([]);
@@ -109,6 +140,10 @@ export default function App() {
   );
   const [last7Days, setLast7Days] = useState<DailyEntry[]>([]);
   const sessionRefreshing = useRef(false);
+  // Skip le premier push de chaque entité après hydration — c'est juste la
+  // lecture initiale, ça écraserait inutilement le remote (et parfois une
+  // donnée plus fraîche qu'on s'apprête à pull-merger).
+  const initialPushSkipped = useRef({ settings: false, progress: false });
 
   const currentWord = useMemo(() => {
     const id = queue[cursor];
@@ -139,6 +174,9 @@ export default function App() {
       setProgress(p);
       setReviewStates(allStates);
       setLast7Days(days);
+      // Reprise kana : restaure la position et le script en cours.
+      setKanaScript(p.kanaScript);
+      setKanaLine(p.kanaLine);
 
       if (!p.onboardingDone) {
         setScreen('onboarding');
@@ -165,6 +203,14 @@ export default function App() {
         setScreen(built.queue.length === 0 ? 'empty' : 'dashboard');
       }
       setHydrated(true);
+      log.info('app', 'hydrated', {
+        words: SEED_DECK.length,
+        reviewStates: Object.keys(allStates).length,
+        last7DaysTotal: days.reduce((s, d) => s + d.count, 0),
+        onboardingDone: p.onboardingDone,
+        kanaCompleted: p.kanaCompleted,
+        resumingSession: !!(snapshot && snapshot.queue.length > 0),
+      });
 
       // Synchro `based` : pull en arrière-plan. Si le remote est plus récent,
       // on patch le state local sans flash (l'UI affiche déjà le state local).
@@ -173,13 +219,26 @@ export default function App() {
         const merged = await pullAndMerge();
         if (!alive) return;
         if (merged.settings) setSettings(merged.settings);
-        if (merged.progress)
+        if (merged.progress) {
+          const remoteP = merged.progress;
           setProgress((prev) => ({
             ...prev,
-            ...merged.progress!,
+            ...remoteP,
             // activeSessionStartedAt reste local (jamais synchro).
             activeSessionStartedAt: prev.activeSessionStartedAt,
           }));
+          // Propage aussi vers les états locaux dérivés. Sans ça, le pull
+          // mettrait à jour progress mais l'écran resterait sur l'ancien
+          // script/ligne (ils étaient lus à l'hydration et figés).
+          setKanaScript(remoteP.kanaScript);
+          setKanaLine(remoteP.kanaLine);
+          // Réoriente l'écran si on était sur kana-intro hiragana et que
+          // le remote nous a poussé sur katakana (par ex. autre device qui
+          // a fini hiragana entre-temps).
+          if (!remoteP.kanaCompleted && !remoteP.onboardingDone) {
+            // pas concerné
+          }
+        }
         if (Object.keys(merged.reviewStates).length > 0) {
           setReviewStates((prev) => ({ ...prev, ...merged.reviewStates }));
         }
@@ -199,13 +258,21 @@ export default function App() {
   useEffect(() => {
     if (!hydrated) return;
     void saveSettings(settings);
-    pushSettings(settings);
+    if (initialPushSkipped.current.settings) {
+      pushSettings(settings);
+    } else {
+      initialPushSkipped.current.settings = true;
+    }
   }, [settings, hydrated]);
 
   useEffect(() => {
     if (!hydrated) return;
     void saveProgress(progress);
-    pushProgress(progress);
+    if (initialPushSkipped.current.progress) {
+      pushProgress(progress);
+    } else {
+      initialPushSkipped.current.progress = true;
+    }
   }, [progress, hydrated]);
 
   // Snapshot de session pour interruptibilité — sauvegarde à chaque rate.
@@ -215,6 +282,18 @@ export default function App() {
       void saveSession({ startedAt, queue, cursor, ratings });
     }
   }, [hydrated, queue, cursor, ratings, startedAt]);
+
+  // Sync du curseur kana (ligne + script) dans `progress` pour reprise
+  // entre sessions. Le test d'égalité empêche les renders en cascade
+  // (setProgress retourne le même objet si rien n'a changé).
+  useEffect(() => {
+    if (!hydrated) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setProgress((p) => {
+      if (p.kanaLine === kanaLine && p.kanaScript === kanaScript) return p;
+      return { ...p, kanaLine, kanaScript, updatedAt: Date.now() };
+    });
+  }, [hydrated, kanaLine, kanaScript]);
 
   // ─── Démarrage / fin de session ─────────────────────────────────────────
   const buildAndCounts = useCallback(() => {
@@ -229,6 +308,12 @@ export default function App() {
 
   const startSession = () => {
     const built = buildAndCounts();
+    log.info('session', 'start', {
+      total: built.queue.length,
+      dues: built.duesCount,
+      news: built.newsCount,
+      suspendedNews: built.suspendedNews,
+    });
     if (built.queue.length === 0) {
       setScreen('empty');
       return;
@@ -256,6 +341,16 @@ export default function App() {
 
     const now = new Date();
     const updated = applyRating(currentState, label, now);
+    log.debug('session', 'rate', {
+      wordId: currentWord.id,
+      word: currentWord.word,
+      label,
+      cursor,
+      total: queue.length,
+      nextDue: updated.fsrs.due.toISOString(),
+      state: updated.fsrs.state,
+      phase: updated.phase,
+    });
 
     setReviewStates((prev) => ({ ...prev, [currentWord.id]: updated }));
     void saveReviewState(updated);
@@ -320,6 +415,7 @@ export default function App() {
   const finishKana = () => {
     if (kanaScript === 'hiragana') {
       setKanaScript('katakana');
+      setKanaLine(0); // sinon on reprend là où le hiragana s'était arrêté (ligne 10)
       setScreen('kana-intro');
     } else {
       setProgress((p) => ({
@@ -379,7 +475,12 @@ export default function App() {
         palette={palette}
         jaFont={jaFont}
         script={kanaScript}
-        onScriptChange={setKanaScript}
+        onScriptChange={(s) => {
+          setKanaScript(s);
+          setKanaLine(0);
+        }}
+        line={kanaLine}
+        onLineChange={setKanaLine}
         onNext={(next) => setScreen(next === 'test' ? 'kana-test' : 'kana-drill')}
         onBack={() => setScreen('kana-intro')}
       />
@@ -392,20 +493,128 @@ export default function App() {
         palette={palette}
         jaFont={jaFont}
         script={kanaScript}
-        onComplete={() => setScreen('kana-discovery')}
+        lineIdx={kanaLine}
+        onComplete={() => {
+          const drilledLine = kanaLine;
+          const isLast = drilledLine >= KANA_LINES.length - 1;
+
+          if (isLast) {
+            // Dernier drill du script → test de sortie sur tout.
+            log.info('app', 'last drill → final test');
+            setKanaTestThroughLine(null);
+            setScreen('kana-test');
+            return;
+          }
+
+          // Avance la ligne pour la suite.
+          setKanaLine(drilledLine + 1);
+
+          // Test intermédiaire toutes les N lignes drillées.
+          if ((drilledLine + 1) % INTERMEDIATE_TEST_EVERY === 0) {
+            log.info('app', 'intermediate test', {
+              throughLine: drilledLine,
+            });
+            setKanaTestThroughLine(drilledLine);
+            setScreen('kana-test');
+          } else {
+            setScreen('kana-discovery');
+          }
+        }}
         onBack={() => setScreen('kana-discovery')}
       />
     );
   }
 
   if (screen === 'kana-test') {
+    const isIntermediate = kanaTestThroughLine !== null;
+    // Le total réel du test = taille du pool ; on le recalcule ici pour
+    // l'envoyer à l'écran review. La source de vérité reste KanaTest.
     return (
       <KanaTest
         palette={palette}
         jaFont={jaFont}
         script={kanaScript}
-        onComplete={finishKana}
+        throughLine={kanaTestThroughLine ?? undefined}
+        onComplete={(wrong) => {
+          // Le total réel = taille du pool du test (même fonction que
+          // KanaTest utilise en interne via itemsUpTo).
+          const total = kanaItemsUpTo(
+            kanaScript,
+            kanaTestThroughLine ?? undefined,
+          ).length;
+          log.info('app', 'test → review', {
+            total,
+            wrongCount: wrong.length,
+            isIntermediate,
+          });
+          setKanaTestResult({
+            total,
+            wrong,
+            isFinal: !isIntermediate,
+          });
+          // Persiste chaque kana raté — accessible en re-exposition future,
+          // synchronisé via `based` (table `kana_failures`).
+          const now = Date.now();
+          for (const w of wrong) {
+            const failure = {
+              id: kanaFailureId(kanaScript, w.kana),
+              script: kanaScript,
+              kana: w.kana,
+              romaji: w.romaji,
+              lineIdx: w.lineIdx,
+              updatedAt: now,
+            };
+            void saveKanaFailure(failure);
+            pushKanaFailure(failure);
+          }
+          setScreen('kana-test-review');
+        }}
         onBack={() => setScreen('kana-discovery')}
+      />
+    );
+  }
+
+  if (screen === 'kana-test-review' && kanaTestResult) {
+    return (
+      <KanaTestReview
+        palette={palette}
+        jaFont={jaFont}
+        totalQuestions={kanaTestResult.total}
+        wrong={kanaTestResult.wrong}
+        onReview={() => {
+          log.info('app', 'review → redrill', {
+            count: kanaTestResult.wrong.length,
+          });
+          setScreen('kana-redrill');
+        }}
+        onContinue={() => {
+          const wasFinal = kanaTestResult.isFinal;
+          log.info('app', 'review → continue', { wasFinal });
+          setKanaTestResult(null);
+          if (wasFinal) {
+            finishKana();
+          } else {
+            setKanaTestThroughLine(null);
+            setScreen('kana-discovery');
+          }
+        }}
+        onBack={() => setScreen('kana-test-review')}
+      />
+    );
+  }
+
+  if (screen === 'kana-redrill' && kanaTestResult) {
+    return (
+      <KanaDrill
+        palette={palette}
+        jaFont={jaFont}
+        script={kanaScript}
+        customQuestions={kanaTestResult.wrong}
+        onComplete={() => {
+          log.info('app', 'redrill done → back to review');
+          setScreen('kana-test-review');
+        }}
+        onBack={() => setScreen('kana-test-review')}
       />
     );
   }

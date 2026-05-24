@@ -77,6 +77,10 @@ export interface Progress {
   onboardingDone: boolean;
   /** ISO du début de session courante, null si pas de session active. */
   activeSessionStartedAt: string | null;
+  /** Reprise du module kana : ligne en cours (0..KANA_LINES.length-1). */
+  kanaLine: number;
+  /** Reprise du module kana : script en cours. */
+  kanaScript: KanaScript;
   updatedAt: number;
 }
 
@@ -84,6 +88,20 @@ export interface Progress {
 export interface DailyRecord {
   date: string; // YYYY-MM-DD (local)
   count: number;
+  updatedAt: number;
+}
+
+/**
+ * Un signe kana raté lors d'un test. Persisté par script (id = `${script}:${kana}`).
+ * Permet de re-exposer les signes fragiles dans les sessions futures.
+ */
+export interface KanaFailure {
+  /** `${script}:${kana}` — clé unique. */
+  id: string;
+  script: KanaScript;
+  kana: string;
+  romaji: string;
+  lineIdx: number;
   updatedAt: number;
 }
 
