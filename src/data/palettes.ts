@@ -1,0 +1,131 @@
+import type { PaletteId, PaletteTokens } from '../types';
+
+/**
+ * 3 directions chromatiques, chacune avec une variante sombre.
+ * Tokens recopiés du prototype (data.jsx) — faible saturation, ambiance papier.
+ */
+export const PALETTES: Record<
+  PaletteId,
+  { light: PaletteTokens; dark: PaletteTokens }
+> = {
+  washi: {
+    light: {
+      bg: '#f1ece1',
+      surface: '#faf6ec',
+      surface2: '#ede6d6',
+      ink: '#1d1a13',
+      ink2: '#3a342a',
+      mute: 'rgba(29,26,19,0.56)',
+      faint: 'rgba(29,26,19,0.08)',
+      line: 'rgba(29,26,19,0.14)',
+      accent: '#2d3e63',
+      accentSoft: 'rgba(45,62,99,0.10)',
+      onAccent: '#faf6ec',
+      again: '#8a3a3a',
+      againSoft: 'rgba(138,58,58,0.10)',
+      good: '#3a5a3e',
+      goodSoft: 'rgba(58,90,62,0.10)',
+    },
+    dark: {
+      bg: '#15130e',
+      surface: '#1d1a13',
+      surface2: '#252118',
+      ink: '#f1ece1',
+      ink2: '#cfc7b5',
+      mute: 'rgba(241,236,225,0.55)',
+      faint: 'rgba(241,236,225,0.06)',
+      line: 'rgba(241,236,225,0.12)',
+      accent: '#a8b8d8',
+      accentSoft: 'rgba(168,184,216,0.12)',
+      onAccent: '#15130e',
+      again: '#d48a8a',
+      againSoft: 'rgba(212,138,138,0.10)',
+      good: '#a8c4a8',
+      goodSoft: 'rgba(168,196,168,0.10)',
+    },
+  },
+  sumi: {
+    light: {
+      bg: '#ebeef2',
+      surface: '#f6f8fb',
+      surface2: '#dde2ea',
+      ink: '#141921',
+      ink2: '#2e3640',
+      mute: 'rgba(20,25,33,0.56)',
+      faint: 'rgba(20,25,33,0.06)',
+      line: 'rgba(20,25,33,0.12)',
+      accent: '#1f3a5c',
+      accentSoft: 'rgba(31,58,92,0.10)',
+      onAccent: '#f6f8fb',
+      again: '#7a3838',
+      againSoft: 'rgba(122,56,56,0.10)',
+      good: '#33564a',
+      goodSoft: 'rgba(51,86,74,0.10)',
+    },
+    dark: {
+      bg: '#0f1218',
+      surface: '#161b23',
+      surface2: '#1e242d',
+      ink: '#eaeef4',
+      ink2: '#bdc4ce',
+      mute: 'rgba(234,238,244,0.55)',
+      faint: 'rgba(234,238,244,0.06)',
+      line: 'rgba(234,238,244,0.10)',
+      accent: '#9ab4d4',
+      accentSoft: 'rgba(154,180,212,0.12)',
+      onAccent: '#0f1218',
+      again: '#d4a0a0',
+      againSoft: 'rgba(212,160,160,0.10)',
+      good: '#a0c4b4',
+      goodSoft: 'rgba(160,196,180,0.10)',
+    },
+  },
+  terre: {
+    light: {
+      bg: '#ece4d3',
+      surface: '#f6efe0',
+      surface2: '#e3d9c2',
+      ink: '#241c0f',
+      ink2: '#46392b',
+      mute: 'rgba(36,28,15,0.58)',
+      faint: 'rgba(36,28,15,0.08)',
+      line: 'rgba(36,28,15,0.14)',
+      accent: '#7a3e1c',
+      accentSoft: 'rgba(122,62,28,0.10)',
+      onAccent: '#f6efe0',
+      again: '#8e3a2a',
+      againSoft: 'rgba(142,58,42,0.10)',
+      good: '#5a6a3a',
+      goodSoft: 'rgba(90,106,58,0.10)',
+    },
+    dark: {
+      bg: '#161208',
+      surface: '#1f1a10',
+      surface2: '#28221660',
+      ink: '#ece4d3',
+      ink2: '#c8bda5',
+      mute: 'rgba(236,228,211,0.56)',
+      faint: 'rgba(236,228,211,0.06)',
+      line: 'rgba(236,228,211,0.12)',
+      accent: '#d4a070',
+      accentSoft: 'rgba(212,160,112,0.12)',
+      onAccent: '#161208',
+      again: '#d49880',
+      againSoft: 'rgba(212,152,128,0.10)',
+      good: '#b4c088',
+      goodSoft: 'rgba(180,192,136,0.10)',
+    },
+  },
+};
+
+export const PALETTE_LIST: { id: PaletteId; label: string; swatch: string[] }[] = [
+  { id: 'washi', label: 'Washi', swatch: ['#f1ece1', '#1d1a13', '#2d3e63'] },
+  { id: 'sumi', label: 'Sumi', swatch: ['#ebeef2', '#141921', '#1f3a5c'] },
+  { id: 'terre', label: 'Terre', swatch: ['#ece4d3', '#241c0f', '#7a3e1c'] },
+];
+
+export const JA_FONTS = {
+  sans: '"Noto Sans JP", system-ui, sans-serif',
+  serif: '"Noto Serif JP", "Hiragino Mincho Pro", serif',
+  klee: '"Klee One", "Noto Sans JP", system-ui, sans-serif',
+} as const;
