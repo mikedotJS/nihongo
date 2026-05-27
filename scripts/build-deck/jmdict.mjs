@@ -119,7 +119,12 @@ export async function buildJmdictIndex(xmlPath, neededKeys) {
         if (curEntry) curEntry._rele = { reb: null };
       } else if (name === 'sense') {
         if (curEntry)
-          curEntry._sense = { pos: [], glossEn: null, glossFr: null };
+          curEntry._sense = {
+            pos: [],
+            misc: [],
+            glossEn: null,
+            glossFr: null,
+          };
       } else if (name === 'gloss') {
         if (curEntry?._sense) {
           curEntry._sense._curLang =
@@ -154,6 +159,8 @@ export async function buildJmdictIndex(xmlPath, neededKeys) {
         curEntry._rele = null;
       } else if (name === 'pos') {
         if (curEntry._sense && text) curEntry._sense.pos.push(text);
+      } else if (name === 'misc') {
+        if (curEntry._sense && text) curEntry._sense.misc.push(text);
       } else if (name === 'gloss') {
         if (curEntry._sense) {
           const lang = curEntry._sense._curLang || 'eng';
@@ -167,6 +174,7 @@ export async function buildJmdictIndex(xmlPath, neededKeys) {
         if (curEntry._sense) {
           curEntry.senses.push({
             pos: curEntry._sense.pos,
+            misc: curEntry._sense.misc,
             glossEn: curEntry._sense.glossEn,
             glossFr: curEntry._sense.glossFr,
           });
@@ -176,9 +184,9 @@ export async function buildJmdictIndex(xmlPath, neededKeys) {
         const allKeys = [...curEntry.kebs, ...curEntry.rebs];
         const interesting = allKeys.some((k) => wantedSet.has(k));
         if (interesting && curEntry.senses.length > 0) {
+          const stripEntity = (s) => s.replace(/^&/, '').replace(/;$/, '');
           // POS = premier sens qui en a (JMdict hérite le POS des sens
           // précédents quand omis).
-          const stripEntity = (s) => s.replace(/^&/, '').replace(/;$/, '');
           let pos = 'inconnu';
           for (const s of curEntry.senses) {
             if (s.pos.length > 0) {
@@ -189,12 +197,19 @@ export async function buildJmdictIndex(xmlPath, neededKeys) {
           // Glosses : premier non-null de chaque langue.
           const glossFr = curEntry.senses.find((s) => s.glossFr)?.glossFr ?? null;
           const glossEn = curEntry.senses.find((s) => s.glossEn)?.glossEn ?? null;
+          // Misc : `uk` = "usually written in kana". On flag *seulement* si le
+          // PREMIER sens (le sens principal) le déclare — sinon on bascule des
+          // mots comme 行く en いく à cause d'un usage secondaire en auxiliaire.
+          const usuallyKana =
+            curEntry.senses[0]?.misc.some((m) => stripEntity(m) === 'uk') ??
+            false;
           const entry = {
             surfaces: curEntry.kebs,
             readings: curEntry.rebs,
             pos,
             glossFr,
             glossEn,
+            usuallyKana,
           };
           for (const k of allKeys) {
             let arr = out.get(k);

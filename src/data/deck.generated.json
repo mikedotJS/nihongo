@@ -1,15 +1,14 @@
 [
   {
-    "id": "w-kpb23f",
+    "id": "w-1h3u2re",
     "frequencyRank": 8,
-    "word": "為る",
+    "word": "する",
     "reading": "する",
     "meaning": "faire",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "為",
-        "r": "す"
+        "t": "す"
       },
       {
         "t": "る"
@@ -17,29 +16,22 @@
     ],
     "sentence": [
       {
-        "t": "行為は言葉よりも雄弁。"
+        "t": "約束するよ。"
       }
     ],
-    "sentenceFr": "L'action vaut mieux que les mots.",
-    "kanjis": [
-      {
-        "char": "為",
-        "meaning": "faire",
-        "readingInWord": "す"
-      }
-    ]
+    "sentenceFr": "Je te donne ma parole.",
+    "kanjis": []
   },
   {
-    "id": "w-bqwk4b",
+    "id": "w-1gsadsq",
     "frequencyRank": 13,
-    "word": "居る",
+    "word": "いる",
     "reading": "いる",
     "meaning": "être (pour les êtres animés)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "居",
-        "r": "い"
+        "t": "い"
       },
       {
         "t": "る"
@@ -47,29 +39,22 @@
     ],
     "sentence": [
       {
-        "t": "トムは家の中に居る。"
+        "t": "いる？"
       }
     ],
-    "sentenceFr": "Tom est dans la maison.",
-    "kanjis": [
-      {
-        "char": "居",
-        "meaning": "se trouver",
-        "readingInWord": "い"
-      }
-    ]
+    "sentenceFr": "T’es là ?",
+    "kanjis": []
   },
   {
-    "id": "w-1hu9jdt",
+    "id": "w-1gr6ska",
     "frequencyRank": 16,
-    "word": "有る",
+    "word": "ある",
     "reading": "ある",
     "meaning": "être (en général pour les objects inanimés)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "有",
-        "r": "あ"
+        "t": "あ"
       },
       {
         "t": "る"
@@ -77,17 +62,11 @@
     ],
     "sentence": [
       {
-        "t": "私の自転車は修理する必要が有る。"
+        "t": "熱あるの？"
       }
     ],
-    "sentenceFr": "Mon vélo a besoin d'être réparé.",
-    "kanjis": [
-      {
-        "char": "有",
-        "meaning": "posséder",
-        "readingInWord": "あ"
-      }
-    ]
+    "sentenceFr": "Tu as de la fièvre ?",
+    "kanjis": []
   },
   {
     "id": "w-1cgfsja",
@@ -120,43 +99,38 @@
     ]
   },
   {
-    "id": "w-9wwhqc",
+    "id": "w-1gzwyhm",
     "frequencyRank": 19,
-    "word": "事",
+    "word": "こと",
     "reading": "こと",
     "meaning": "chose",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "事",
-        "r": "こと"
+        "t": "こ"
+      },
+      {
+        "t": "と"
       }
     ],
     "sentence": [
       {
-        "t": "お見事！"
+        "t": "僕のこと好き？"
       }
     ],
-    "sentenceFr": "Fantastique !",
-    "kanjis": [
-      {
-        "char": "事",
-        "meaning": "fait",
-        "readingInWord": "こと"
-      }
-    ]
+    "sentenceFr": "Tu m'aimes ?",
+    "kanjis": []
   },
   {
-    "id": "w-yebgzk",
+    "id": "w-1hd6l96",
     "frequencyRank": 22,
-    "word": "成る",
+    "word": "なる",
     "reading": "なる",
     "meaning": "devenir",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "成",
-        "r": "な"
+        "t": "な"
       },
       {
         "t": "る"
@@ -164,29 +138,22 @@
     ],
     "sentence": [
       {
-        "t": "この文は七語から成る。"
+        "t": "なるほど。"
       }
     ],
-    "sentenceFr": "Cette phrase se compose de sept mots.",
-    "kanjis": [
-      {
-        "char": "成",
-        "meaning": "se changer en",
-        "readingInWord": "な"
-      }
-    ]
+    "sentenceFr": "Je vois.",
+    "kanjis": []
   },
   {
-    "id": "w-m8ojht",
+    "id": "w-1hbx94q",
     "frequencyRank": 24,
-    "word": "無い",
+    "word": "ない",
     "reading": "ない",
     "meaning": "inexistant",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "無",
-        "r": "な"
+        "t": "な"
       },
       {
         "t": "い"
@@ -194,82 +161,68 @@
     ],
     "sentence": [
       {
-        "t": "勉強する暇が無い。"
+        "t": "危ない！"
       }
     ],
-    "sentenceFr": "Je n'ai pas de temps libre pour étudier.",
-    "kanjis": [
-      {
-        "char": "無",
-        "meaning": "néant",
-        "readingInWord": "な"
-      }
-    ]
+    "sentenceFr": "Attention !",
+    "kanjis": []
   },
   {
-    "id": "w-14i3e7n",
+    "id": "w-1h5iql6",
     "frequencyRank": 29,
-    "word": "其の",
+    "word": "その",
     "reading": "その",
     "meaning": "ça (quelque chose ou quelqu'un éloigné de l'orateur, proche de l'auditeur ; actions de l'auditeur, ou les idées exprimées ou comprises par l'auditeur)",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "其",
-        "r": "そ"
+        "t": "そ"
       },
       {
         "t": "の"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "其",
-        "meaning": "cela",
-        "readingInWord": "そ"
+        "t": "その通り！"
       }
-    ]
+    ],
+    "sentenceFr": "Exactement !",
+    "kanjis": []
   },
   {
-    "id": "w-dcv6ao",
+    "id": "w-1hsgdmi",
     "frequencyRank": 30,
-    "word": "様",
+    "word": "よう",
     "reading": "よう",
     "meaning": "apparaissant...",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "様",
-        "r": "よう"
+        "t": "よ"
+      },
+      {
+        "t": "う"
       }
     ],
     "sentence": [
       {
-        "t": "お気の毒様。"
+        "t": "ようこそ！"
       }
     ],
-    "sentenceFr": "Je suis désolé pour toi.",
-    "kanjis": [
-      {
-        "char": "様",
-        "meaning": "Monsieur, Madame",
-        "readingInWord": "よう"
-      }
-    ]
+    "sentenceFr": "Bienvenue !",
+    "kanjis": []
   },
   {
-    "id": "w-1yutmqz",
+    "id": "w-1h00sey",
     "frequencyRank": 35,
-    "word": "此の",
+    "word": "この",
     "reading": "この",
     "meaning": "ce (quelque chose ou quelqu'un proche du locuteur (incluant le locuteur), ou des idées exprimés par le locuteur)",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "此",
-        "r": "こ"
+        "t": "こ"
       },
       {
         "t": "の"
@@ -277,17 +230,11 @@
     ],
     "sentence": [
       {
-        "t": "その頃は自転車の流行り出した始めで、下手な素人がそこでも此処でも人を轢いたり、塀を突き破ったりした。"
+        "t": "この音何？"
       }
     ],
-    "sentenceFr": "En ce temps-là, les bicyclettes commençaient juste à devenir populaires, et çà et là, il y avait de nombreux débutants qui bousculaient les gens et passaient à travers leurs haies.",
-    "kanjis": [
-      {
-        "char": "此",
-        "meaning": "ici",
-        "readingInWord": "こ"
-      }
-    ]
+    "sentenceFr": "C’est quoi, ce bruit ?",
+    "kanjis": []
   },
   {
     "id": "w-efrgf1",
@@ -317,30 +264,27 @@
     ]
   },
   {
-    "id": "w-14imjub",
+    "id": "w-1h61w7u",
     "frequencyRank": 38,
-    "word": "其れ",
+    "word": "それ",
     "reading": "それ",
     "meaning": "ça (indique quelque chose ou quelqu'un de proche de l'auditeur, l'action de l'auditeur, ou l'objet de leur pensée)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "其",
-        "r": "そ"
+        "t": "そ"
       },
       {
         "t": "れ"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "其",
-        "meaning": "cela",
-        "readingInWord": "そ"
+        "t": "それ何？"
       }
-    ]
+    ],
+    "sentenceFr": "Qu'est-ce que c'est que ça ?",
+    "kanjis": []
   },
   {
     "id": "w-bx57yk",
@@ -490,16 +434,18 @@
     ]
   },
   {
-    "id": "w-17u243v",
+    "id": "w-130we8g",
     "frequencyRank": 50,
-    "word": "出来る",
+    "word": "できる",
     "reading": "できる",
     "meaning": "être en position de faire",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "出来",
-        "r": "でき"
+        "t": "で"
+      },
+      {
+        "t": "き"
       },
       {
         "t": "る"
@@ -507,34 +453,22 @@
     ],
     "sentence": [
       {
-        "t": "胃に潰瘍が出来る。"
+        "t": "できるよ！"
       }
     ],
-    "sentenceFr": "Un ulcère se forme dans l'estomac.",
-    "kanjis": [
-      {
-        "char": "出",
-        "meaning": "sortir",
-        "readingInWord": "でき"
-      },
-      {
-        "char": "来",
-        "meaning": "venir",
-        "readingInWord": "でき"
-      }
-    ]
+    "sentenceFr": "Tu peux le faire !",
+    "kanjis": []
   },
   {
-    "id": "w-1yvcsdn",
+    "id": "w-1h0jy1m",
     "frequencyRank": 51,
-    "word": "此れ",
+    "word": "これ",
     "reading": "これ",
     "meaning": "ceci (indiquant un élément près du locuteur, de l'action du locuteur, ou le sujet en cours)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "此",
-        "r": "こ"
+        "t": "こ"
       },
       {
         "t": "れ"
@@ -542,17 +476,11 @@
     ],
     "sentence": [
       {
-        "t": "その頃は自転車の流行り出した始めで、下手な素人がそこでも此処でも人を轢いたり、塀を突き破ったりした。"
+        "t": "何これ？"
       }
     ],
-    "sentenceFr": "En ce temps-là, les bicyclettes commençaient juste à devenir populaires, et çà et là, il y avait de nombreux débutants qui bousculaient les gens et passaient à travers leurs haies.",
-    "kanjis": [
-      {
-        "char": "此",
-        "meaning": "ici",
-        "readingInWord": "こ"
-      }
-    ]
+    "sentenceFr": "Qu'est-ce que c'est que ça ?",
+    "kanjis": []
   },
   {
     "id": "w-ivd2u9",
@@ -612,16 +540,15 @@
     ]
   },
   {
-    "id": "w-1poosaa",
+    "id": "w-1htofru",
     "frequencyRank": 61,
-    "word": "因る",
+    "word": "よる",
     "reading": "よる",
     "meaning": "être dû à",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "因",
-        "r": "よ"
+        "t": "よ"
       },
       {
         "t": "る"
@@ -629,17 +556,11 @@
     ],
     "sentence": [
       {
-        "t": "何が原因ですか。"
+        "t": "それは文脈による。"
       }
     ],
-    "sentenceFr": "Quelle est la cause ?",
-    "kanjis": [
-      {
-        "char": "因",
-        "meaning": "cause",
-        "readingInWord": "よ"
-      }
-    ]
+    "sentenceFr": "Ça dépend du contexte.",
+    "kanjis": []
   },
   {
     "id": "w-a0hhmu",
@@ -723,31 +644,27 @@
     ]
   },
   {
-    "id": "w-e8488y",
+    "id": "w-1h6ygl6",
     "frequencyRank": 68,
-    "word": "為",
+    "word": "ため",
     "reading": "ため",
     "meaning": "bien",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "為",
-        "r": "ため"
+        "t": "た"
+      },
+      {
+        "t": "め"
       }
     ],
     "sentence": [
       {
-        "t": "行為は言葉よりも雄弁。"
+        "t": "何のために？"
       }
     ],
-    "sentenceFr": "L'action vaut mieux que les mots.",
-    "kanjis": [
-      {
-        "char": "為",
-        "meaning": "faire",
-        "readingInWord": "ため"
-      }
-    ]
+    "sentenceFr": "Pour quoi faire ?",
+    "kanjis": []
   },
   {
     "id": "w-d03ebu",
@@ -836,31 +753,27 @@
     ]
   },
   {
-    "id": "w-akos5v",
+    "id": "w-1hnee56",
     "frequencyRank": 84,
-    "word": "又",
+    "word": "また",
     "reading": "また",
     "meaning": "de nouveau",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "又",
-        "r": "また"
+        "t": "ま"
+      },
+      {
+        "t": "た"
       }
     ],
     "sentence": [
       {
-        "t": "本を又貸ししてはいけない。"
+        "t": "また！"
       }
     ],
-    "sentenceFr": "Ne prête pas à un autre le livre que tu as emprunté.",
-    "kanjis": [
-      {
-        "char": "又",
-        "meaning": "ou encore",
-        "readingInWord": "また"
-      }
-    ]
+    "sentenceFr": "À plus tard !",
+    "kanjis": []
   },
   {
     "id": "w-eqyivr",
@@ -982,35 +895,30 @@
     ]
   },
   {
-    "id": "w-1p0kl9e",
+    "id": "w-13f5e84",
     "frequencyRank": 93,
-    "word": "仕舞う",
+    "word": "しまう",
     "reading": "しまう",
     "meaning": "terminer",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "仕舞",
-        "r": "しま"
+        "t": "し"
+      },
+      {
+        "t": "ま"
       },
       {
         "t": "う"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "仕",
-        "meaning": "servir",
-        "readingInWord": "しま"
-      },
-      {
-        "char": "舞",
-        "meaning": "danse",
-        "readingInWord": "しま"
+        "t": "ついそちらに足が向いてしまう。"
       }
-    ]
+    ],
+    "sentenceFr": "J'ai souvent envie d'aller là-bas.",
+    "kanjis": []
   },
   {
     "id": "w-cu5ito",
@@ -1156,16 +1064,15 @@
     ]
   },
   {
-    "id": "w-2fjge1",
+    "id": "w-1hrh9ay",
     "frequencyRank": 102,
-    "word": "遣る",
+    "word": "やる",
     "reading": "やる",
     "meaning": "faire",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "遣",
-        "r": "や"
+        "t": "や"
       },
       {
         "t": "る"
@@ -1173,44 +1080,11 @@
     ],
     "sentence": [
       {
-        "t": "無駄遣いをするな。"
+        "t": "手伝ってやる。"
       }
     ],
-    "sentenceFr": "Ne jette pas ton argent par les fenêtres.",
-    "kanjis": [
-      {
-        "char": "遣",
-        "meaning": "expédier",
-        "readingInWord": "や"
-      }
-    ]
-  },
-  {
-    "id": "w-w6dihl",
-    "frequencyRank": 103,
-    "word": "．",
-    "reading": "てん",
-    "meaning": "Code (de loi)",
-    "pos": "nom",
-    "wordRuby": [
-      {
-        "k": "．",
-        "r": "てん"
-      }
-    ],
-    "sentence": [
-      {
-        "t": "２．身頃の肩を縫い合わせる。"
-      }
-    ],
-    "sentenceFr": "2. Cousez les épaules au corps du vêtement.",
-    "kanjis": [
-      {
-        "char": "．",
-        "meaning": "—",
-        "readingInWord": "てん"
-      }
-    ]
+    "sentenceFr": "Laissez-moi faire ça.",
+    "kanjis": []
   },
   {
     "id": "w-fk25yn",
@@ -1240,16 +1114,15 @@
     ]
   },
   {
-    "id": "w-4yiiaj",
+    "id": "w-1kxsw6c",
     "frequencyRank": 105,
-    "word": "分かる",
+    "word": "わかる",
     "reading": "わかる",
     "meaning": "comprendre",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "分",
-        "r": "わ"
+        "t": "わ"
       },
       {
         "t": "か"
@@ -1260,17 +1133,11 @@
     ],
     "sentence": [
       {
-        "t": "今何時か分かる？"
+        "t": "見ればわかるよ。"
       }
     ],
-    "sentenceFr": "Il est quelle heure, là ?",
-    "kanjis": [
-      {
-        "char": "分",
-        "meaning": "portion",
-        "readingInWord": "わ"
-      }
-    ]
+    "sentenceFr": "Tu comprendras quand tu verras.",
+    "kanjis": []
   },
   {
     "id": "w-cuxlvv",
@@ -1300,16 +1167,15 @@
     ]
   },
   {
-    "id": "w-bqwk9h",
+    "id": "w-1gvl5i2",
     "frequencyRank": 107,
-    "word": "居る",
+    "word": "おる",
     "reading": "おる",
     "meaning": "être (animé)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "居",
-        "r": "お"
+        "t": "お"
       },
       {
         "t": "る"
@@ -1317,17 +1183,11 @@
     ],
     "sentence": [
       {
-        "t": "トムは家の中に居る。"
+        "t": "お見事！"
       }
     ],
-    "sentenceFr": "Tom est dans la maison.",
-    "kanjis": [
-      {
-        "char": "居",
-        "meaning": "se trouver",
-        "readingInWord": "お"
-      }
-    ]
+    "sentenceFr": "Fantastique !",
+    "kanjis": []
   },
   {
     "id": "w-1cq3qq4",
@@ -1554,16 +1414,18 @@
     ]
   },
   {
-    "id": "w-1gltyrk",
+    "id": "w-uj42ai",
     "frequencyRank": 125,
-    "word": "下さる",
+    "word": "くださる",
     "reading": "くださる",
     "meaning": "donner",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "下",
-        "r": "くだ"
+        "t": "く"
+      },
+      {
+        "t": "だ"
       },
       {
         "t": "さ"
@@ -1574,17 +1436,11 @@
     ],
     "sentence": [
       {
-        "t": "そう言って下さるとは大変ご親切様です。"
+        "t": "加藤先生が私達に英語を教えてくださる。"
       }
     ],
-    "sentenceFr": "C'est très aimable à vous de dire cela.",
-    "kanjis": [
-      {
-        "char": "下",
-        "meaning": "au-dessous",
-        "readingInWord": "くだ"
-      }
-    ]
+    "sentenceFr": "M. Kato nous enseigne l'anglais.",
+    "kanjis": []
   },
   {
     "id": "w-1hjwqcy",
@@ -2095,36 +1951,27 @@
     ]
   },
   {
-    "id": "w-41ogd4",
+    "id": "w-1gzjjqy",
     "frequencyRank": 157,
-    "word": "此処",
+    "word": "ここ",
     "reading": "ここ",
     "meaning": "ici (endroit proche physiquement du locuteur, endroit désigné par le locuteur lors d'une explication)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "此処",
-        "r": "ここ"
+        "t": "こ"
+      },
+      {
+        "t": "こ"
       }
     ],
     "sentence": [
       {
-        "t": "その頃は自転車の流行り出した始めで、下手な素人がそこでも此処でも人を轢いたり、塀を突き破ったりした。"
+        "t": "ここが痛い。"
       }
     ],
-    "sentenceFr": "En ce temps-là, les bicyclettes commençaient juste à devenir populaires, et çà et là, il y avait de nombreux débutants qui bousculaient les gens et passaient à travers leurs haies.",
-    "kanjis": [
-      {
-        "char": "此",
-        "meaning": "ici",
-        "readingInWord": "ここ"
-      },
-      {
-        "char": "処",
-        "meaning": "traiter",
-        "readingInWord": "ここ"
-      }
-    ]
+    "sentenceFr": "J'ai mal ici.",
+    "kanjis": []
   },
   {
     "id": "w-1e4ku7o",
@@ -2157,16 +2004,18 @@
     ]
   },
   {
-    "id": "w-1rvb8ms",
+    "id": "w-1cj7fko",
     "frequencyRank": 159,
-    "word": "御座る",
+    "word": "ござる",
     "reading": "ござる",
     "meaning": "to be",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "御座",
-        "r": "ござ"
+        "t": "ご"
+      },
+      {
+        "t": "ざ"
       },
       {
         "t": "る"
@@ -2174,50 +2023,34 @@
     ],
     "sentence": [
       {
-        "t": "何かデンマークに善くない事があるので御座ろう。"
+        "t": "おはようございます！"
       }
     ],
-    "sentenceFr": "Il y a quelque chose de pourri au royaume du Danemark.",
-    "kanjis": [
-      {
-        "char": "御",
-        "meaning": "honorable",
-        "readingInWord": "ござ"
-      },
-      {
-        "char": "座",
-        "meaning": "s'accroupir",
-        "readingInWord": "ござ"
-      }
-    ]
+    "sentenceFr": "Bonjour !",
+    "kanjis": []
   },
   {
-    "id": "w-18q29sw",
+    "id": "w-1h51hx6",
     "frequencyRank": 160,
-    "word": "其処",
+    "word": "そこ",
     "reading": "そこ",
     "meaning": "là (lieu relativement proche de l'auditeur)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "其処",
-        "r": "そこ"
-      }
-    ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
-      {
-        "char": "其",
-        "meaning": "cela",
-        "readingInWord": "そこ"
+        "t": "そ"
       },
       {
-        "char": "処",
-        "meaning": "traiter",
-        "readingInWord": "そこ"
+        "t": "こ"
       }
-    ]
+    ],
+    "sentence": [
+      {
+        "t": "そこにいて。"
+      }
+    ],
+    "sentenceFr": "Reste là.",
+    "kanjis": []
   },
   {
     "id": "w-hff1x",
@@ -2444,36 +2277,30 @@
     ]
   },
   {
-    "id": "w-1dx3m2q",
+    "id": "w-683md0",
     "frequencyRank": 175,
-    "word": "貴方",
+    "word": "あなた",
     "reading": "あなた",
     "meaning": "vous, toi (pour un interlocuteur de même statut ou inférieur)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "貴方",
-        "r": "あなた"
+        "t": "あ"
+      },
+      {
+        "t": "な"
+      },
+      {
+        "t": "た"
       }
     ],
     "sentence": [
       {
-        "t": "貴方は、人間です。"
+        "t": "あなたですか？"
       }
     ],
-    "sentenceFr": "Tu es humain.",
-    "kanjis": [
-      {
-        "char": "貴",
-        "meaning": "précieux",
-        "readingInWord": "あなた"
-      },
-      {
-        "char": "方",
-        "meaning": "direction",
-        "readingInWord": "あなた"
-      }
-    ]
+    "sentenceFr": "Est-ce que c'est toi ?",
+    "kanjis": []
   },
   {
     "id": "w-a7ap08",
@@ -2648,43 +2475,38 @@
     ]
   },
   {
-    "id": "w-eyftj3",
+    "id": "w-1ho57mi",
     "frequencyRank": 183,
-    "word": "皆",
+    "word": "みな",
     "reading": "みな",
     "meaning": "tous",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "皆",
-        "r": "みな"
+        "t": "み"
+      },
+      {
+        "t": "な"
       }
     ],
     "sentence": [
       {
-        "t": "人は皆平等だ。"
+        "t": "おやすみなさい。"
       }
     ],
-    "sentenceFr": "Tous les hommes sont égaux.",
-    "kanjis": [
-      {
-        "char": "皆",
-        "meaning": "tout",
-        "readingInWord": "みな"
-      }
-    ]
+    "sentenceFr": "Bonne nuit !",
+    "kanjis": []
   },
   {
-    "id": "w-1sdth86",
+    "id": "w-1vx00zm",
     "frequencyRank": 185,
-    "word": "付ける",
+    "word": "つける",
     "reading": "つける",
     "meaning": "attacher",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "付",
-        "r": "つ"
+        "t": "つ"
       },
       {
         "t": "け"
@@ -2695,17 +2517,11 @@
     ],
     "sentence": [
       {
-        "t": "馬の前に荷車を付けるな。"
+        "t": "日記をつける。"
       }
     ],
-    "sentenceFr": "Ne mettez pas la charrue avant les bœufs.",
-    "kanjis": [
-      {
-        "char": "付",
-        "meaning": "coller",
-        "readingInWord": "つ"
-      }
-    ]
+    "sentenceFr": "Je tiens un journal.",
+    "kanjis": []
   },
   {
     "id": "w-u95g7i",
@@ -2916,16 +2732,15 @@
     ]
   },
   {
-    "id": "w-ivk3pd",
+    "id": "w-1hsm4ii",
     "frequencyRank": 195,
-    "word": "良く",
+    "word": "よく",
     "reading": "よく",
     "meaning": "bien",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "良",
-        "r": "よ"
+        "t": "よ"
       },
       {
         "t": "く"
@@ -2933,17 +2748,11 @@
     ],
     "sentence": [
       {
-        "t": "彼は良く働きます。"
+        "t": "よく見て。"
       }
     ],
-    "sentenceFr": "Il travaille bien.",
-    "kanjis": [
-      {
-        "char": "良",
-        "meaning": "bon",
-        "readingInWord": "よ"
-      }
-    ]
+    "sentenceFr": "Regarde bien.",
+    "kanjis": []
   },
   {
     "id": "w-8tf9kw",
@@ -3065,16 +2874,18 @@
     ]
   },
   {
-    "id": "w-1g4trln",
+    "id": "w-10hpuis",
     "frequencyRank": 200,
-    "word": "貰う",
+    "word": "もらう",
     "reading": "もらう",
     "meaning": "recevoir",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "貰",
-        "r": "もら"
+        "t": "も"
+      },
+      {
+        "t": "ら"
       },
       {
         "t": "う"
@@ -3082,17 +2893,11 @@
     ],
     "sentence": [
       {
-        "t": "何も貰わなかったわ。"
+        "t": "彼に来てもらう。"
       }
     ],
-    "sentenceFr": "Je n'ai rien reçu !",
-    "kanjis": [
-      {
-        "char": "貰",
-        "meaning": "recevoir (je reçois de toi)",
-        "readingInWord": "もら"
-      }
-    ]
+    "sentenceFr": "Je le ferai venir.",
+    "kanjis": []
   },
   {
     "id": "w-tc48zf",
@@ -3127,36 +2932,27 @@
     ]
   },
   {
-    "id": "w-12yudgt",
+    "id": "w-1grlha2",
     "frequencyRank": 202,
-    "word": "何時",
+    "word": "いつ",
     "reading": "いつ",
     "meaning": "quand",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "何時",
-        "r": "いつ"
+        "t": "い"
+      },
+      {
+        "t": "つ"
       }
     ],
     "sentence": [
       {
-        "t": "何時ごろ？"
+        "t": "いつ？"
       }
     ],
-    "sentenceFr": "Vers quelle heure ?",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "いつ"
-      },
-      {
-        "char": "時",
-        "meaning": "temps",
-        "readingInWord": "いつ"
-      }
-    ]
+    "sentenceFr": "Quand ?",
+    "kanjis": []
   },
   {
     "id": "w-1r8agh6",
@@ -3219,16 +3015,15 @@
     ]
   },
   {
-    "id": "w-dbvz1c",
+    "id": "w-1k4mor4",
     "frequencyRank": 205,
-    "word": "掛ける",
+    "word": "かける",
     "reading": "かける",
     "meaning": "accrocher (par ex. un tableau)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "掛",
-        "r": "か"
+        "t": "か"
       },
       {
         "t": "け"
@@ -3239,17 +3034,11 @@
     ],
     "sentence": [
       {
-        "t": "彼にあまり期待を掛けるな。"
+        "t": "話しかけるな。"
       }
     ],
-    "sentenceFr": "N'attendez pas trop de lui.",
-    "kanjis": [
-      {
-        "char": "掛",
-        "meaning": "accrocher",
-        "readingInWord": "か"
-      }
-    ]
+    "sentenceFr": "Ne parle pas !",
+    "kanjis": []
   },
   {
     "id": "w-1dabae6",
@@ -3553,27 +3342,27 @@
     ]
   },
   {
-    "id": "w-a21oz1",
+    "id": "w-1hny6re",
     "frequencyRank": 219,
-    "word": "侭",
+    "word": "まま",
     "reading": "まま",
     "meaning": "condition",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "侭",
-        "r": "まま"
+        "t": "ま"
+      },
+      {
+        "t": "ま"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "侭",
-        "meaning": "as it is",
-        "readingInWord": "まま"
+        "t": "服のまま寝ちゃった。"
       }
-    ]
+    ],
+    "sentenceFr": "Je me suis endormi habillé.",
+    "kanjis": []
   },
   {
     "id": "w-cqs9f",
@@ -4062,36 +3851,27 @@
     ]
   },
   {
-    "id": "w-10eeepf",
+    "id": "w-1hbn1bu",
     "frequencyRank": 240,
-    "word": "何処",
+    "word": "どこ",
     "reading": "どこ",
     "meaning": "où",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "何処",
-        "r": "どこ"
+        "t": "ど"
+      },
+      {
+        "t": "こ"
       }
     ],
     "sentence": [
       {
-        "t": "彼女が何処にいるかが解った。"
+        "t": "新聞どこ？"
       }
     ],
-    "sentenceFr": "J'ai découvert où elle était.",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "どこ"
-      },
-      {
-        "char": "処",
-        "meaning": "traiter",
-        "readingInWord": "どこ"
-      }
-    ]
+    "sentenceFr": "Où est le journal ?",
+    "kanjis": []
   },
   {
     "id": "w-1ys2b2u",
@@ -4159,16 +3939,21 @@
     ]
   },
   {
-    "id": "w-1a4u2l3",
+    "id": "w-11di9h6",
     "frequencyRank": 243,
-    "word": "頂く",
+    "word": "いただく",
     "reading": "いただく",
     "meaning": "recevoir",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "頂",
-        "r": "いただ"
+        "t": "い"
+      },
+      {
+        "t": "た"
+      },
+      {
+        "t": "だ"
       },
       {
         "t": "く"
@@ -4176,17 +3961,11 @@
     ],
     "sentence": [
       {
-        "t": "頂きます。"
+        "t": "あなたの許可をいただくべきだったでしょうか。"
       }
     ],
-    "sentenceFr": "Bon appétit !",
-    "kanjis": [
-      {
-        "char": "頂",
-        "meaning": "placer au sommet",
-        "readingInWord": "いただ"
-      }
-    ]
+    "sentenceFr": "Aurais-je dû demander ta permission ?",
+    "kanjis": []
   },
   {
     "id": "w-1nru52b",
@@ -4374,16 +4153,15 @@
     ]
   },
   {
-    "id": "w-oawpro",
+    "id": "w-1gqo9x6",
     "frequencyRank": 251,
-    "word": "彼の",
+    "word": "あの",
     "reading": "あの",
     "meaning": "ça (quelqu'un ou quelque chose de distant à la fois du locuteur et de l'auditeur, ou situation inconnue à la fois du locuteur et de l'auditeur)",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "彼",
-        "r": "あ"
+        "t": "あ"
       },
       {
         "t": "の"
@@ -4391,17 +4169,11 @@
     ],
     "sentence": [
       {
-        "t": "彼の足は長い。"
+        "t": "あの人形怖い。"
       }
     ],
-    "sentenceFr": "Il a de longues jambes.",
-    "kanjis": [
-      {
-        "char": "彼",
-        "meaning": "lui",
-        "readingInWord": "あ"
-      }
-    ]
+    "sentenceFr": "Cette poupée me fait peur.",
+    "kanjis": []
   },
   {
     "id": "w-qebfxw",
@@ -4436,16 +4208,15 @@
     ]
   },
   {
-    "id": "w-ahm8j0",
+    "id": "w-1hacy8s",
     "frequencyRank": 253,
-    "word": "掛かる",
+    "word": "かかる",
     "reading": "かかる",
     "meaning": "prendre (une ressource, par ex. du temps ou de l'argent)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "掛",
-        "r": "か"
+        "t": "か"
       },
       {
         "t": "か"
@@ -4456,29 +4227,25 @@
     ],
     "sentence": [
       {
-        "t": "見知らぬ人に吠え掛かるのは多くの犬に共通の習慣です。"
+        "t": "体重が気にかかる。"
       }
     ],
-    "sentenceFr": "De nombreux chiens ont en commun la manie d'aboyer sur les inconnus.",
-    "kanjis": [
-      {
-        "char": "掛",
-        "meaning": "accrocher",
-        "readingInWord": "か"
-      }
-    ]
+    "sentenceFr": "Mon poids me préoccupe.",
+    "kanjis": []
   },
   {
-    "id": "w-15azfl6",
+    "id": "w-1uwbb2q",
     "frequencyRank": 254,
-    "word": "全て",
+    "word": "すべて",
     "reading": "すべて",
     "meaning": "tout",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "全",
-        "r": "すべ"
+        "t": "す"
+      },
+      {
+        "t": "べ"
       },
       {
         "t": "て"
@@ -4486,17 +4253,11 @@
     ],
     "sentence": [
       {
-        "t": "試験は全て済んだ。"
+        "t": "犬はすべて忠実だ。"
       }
     ],
-    "sentenceFr": "Tous les examens sont à présent derrière nous.",
-    "kanjis": [
-      {
-        "char": "全",
-        "meaning": "totalité",
-        "readingInWord": "すべ"
-      }
-    ]
+    "sentenceFr": "Tous les chiens sont fidèles.",
+    "kanjis": []
   },
   {
     "id": "w-b83lsv",
@@ -4649,16 +4410,15 @@
     ]
   },
   {
-    "id": "w-1ibnbxi",
+    "id": "w-1hnf14q",
     "frequencyRank": 262,
-    "word": "未だ",
+    "word": "まだ",
     "reading": "まだ",
     "meaning": "pas encore",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "未",
-        "r": "ま"
+        "t": "ま"
       },
       {
         "t": "だ"
@@ -4666,17 +4426,11 @@
     ],
     "sentence": [
       {
-        "t": "彼の影響力は未だ衰えていない。"
+        "t": "まだです。"
       }
     ],
-    "sentenceFr": "Son influence n'a pas encore décliné.",
-    "kanjis": [
-      {
-        "char": "未",
-        "meaning": "non-",
-        "readingInWord": "ま"
-      }
-    ]
+    "sentenceFr": "Pas encore.",
+    "kanjis": []
   },
   {
     "id": "w-ad98jk",
@@ -4738,35 +4492,30 @@
     ]
   },
   {
-    "id": "w-1p65iho",
+    "id": "w-1ikq9z8",
     "frequencyRank": 265,
-    "word": "矢張り",
+    "word": "やはり",
     "reading": "やはり",
     "meaning": "as expected",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "矢張",
-        "r": "やは"
+        "t": "や"
+      },
+      {
+        "t": "は"
       },
       {
         "t": "り"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "矢",
-        "meaning": "fléchette",
-        "readingInWord": "やは"
-      },
-      {
-        "char": "張",
-        "meaning": "allonger",
-        "readingInWord": "やは"
+        "t": "男の子はやはり男の子。"
       }
-    ]
+    ],
+    "sentenceFr": "Les garçons restent des garçons.",
+    "kanjis": []
   },
   {
     "id": "w-c4qwx4",
@@ -4835,31 +4584,27 @@
     ]
   },
   {
-    "id": "w-j6hv1t",
+    "id": "w-1h0kl16",
     "frequencyRank": 268,
-    "word": "頃",
+    "word": "ころ",
     "reading": "ころ",
     "meaning": "moment (ou condition) opportun",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "頃",
-        "r": "ころ"
+        "t": "こ"
+      },
+      {
+        "t": "ろ"
       }
     ],
     "sentence": [
       {
-        "t": "７時頃にね。"
+        "t": "こころを開いて。"
       }
     ],
-    "sentenceFr": "On se voit vers 7 heures.",
-    "kanjis": [
-      {
-        "char": "頃",
-        "meaning": "temps",
-        "readingInWord": "ころ"
-      }
-    ]
+    "sentenceFr": "Ouvre ton cœur.",
+    "kanjis": []
   },
   {
     "id": "w-14swjz2",
@@ -5273,36 +5018,33 @@
     ]
   },
   {
-    "id": "w-dd5sa5",
+    "id": "w-o5j21m",
     "frequencyRank": 287,
-    "word": "一寸",
+    "word": "ちょっと",
     "reading": "ちょっと",
     "meaning": "un instant",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "一寸",
-        "r": "ちょっと"
+        "t": "ち"
+      },
+      {
+        "t": "ょ"
+      },
+      {
+        "t": "っ"
+      },
+      {
+        "t": "と"
       }
     ],
     "sentence": [
       {
-        "t": "一寸の虫にも五分の魂。"
+        "t": "ちょっと失礼。"
       }
     ],
-    "sentenceFr": "Même un insecte a un résidu d'âme.",
-    "kanjis": [
-      {
-        "char": "一",
-        "meaning": "un",
-        "readingInWord": "ちょっと"
-      },
-      {
-        "char": "寸",
-        "meaning": "dimension",
-        "readingInWord": "ちょっと"
-      }
-    ]
+    "sentenceFr": "Désolé...",
+    "kanjis": []
   },
   {
     "id": "w-a9c3ka",
@@ -5881,16 +5623,15 @@
     ]
   },
   {
-    "id": "w-13sg3yc",
+    "id": "w-1hnb77e",
     "frequencyRank": 315,
-    "word": "先ず",
+    "word": "まず",
     "reading": "まず",
     "meaning": "(tout) d'abord",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "先",
-        "r": "ま"
+        "t": "ま"
       },
       {
         "t": "ず"
@@ -5898,29 +5639,22 @@
     ],
     "sentence": [
       {
-        "t": "当クラブに入会をご希望でしたら、先ずこの申し込み用紙に必要事項を書き入れて下さい。"
+        "t": "私はひざまずいた。"
       }
     ],
-    "sentenceFr": "Si tu veux faire partie du club, remplis d'abord ce formulaire d'inscription.",
-    "kanjis": [
-      {
-        "char": "先",
-        "meaning": "avant",
-        "readingInWord": "ま"
-      }
-    ]
+    "sentenceFr": "Je me suis mis à genoux.",
+    "kanjis": []
   },
   {
-    "id": "w-190pfn9",
+    "id": "w-1h2sehm",
     "frequencyRank": 316,
-    "word": "直ぐ",
+    "word": "すぐ",
     "reading": "すぐ",
     "meaning": "aussitôt",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "直",
-        "r": "す"
+        "t": "す"
       },
       {
         "t": "ぐ"
@@ -5928,17 +5662,11 @@
     ],
     "sentence": [
       {
-        "t": "彼は鉛筆で真っ直ぐな線を描いた。"
+        "t": "すぐ戻る。"
       }
     ],
-    "sentenceFr": "Il traça une ligne droite avec son crayon.",
-    "kanjis": [
-      {
-        "char": "直",
-        "meaning": "droit devant",
-        "readingInWord": "す"
-      }
-    ]
+    "sentenceFr": "Je reviens de suite.",
+    "kanjis": []
   },
   {
     "id": "w-17ddwlk",
@@ -6098,16 +5826,15 @@
     ]
   },
   {
-    "id": "w-w6fj46",
+    "id": "w-1hc49zu",
     "frequencyRank": 323,
-    "word": "何の",
+    "word": "どの",
     "reading": "どの",
     "meaning": "which",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "何",
-        "r": "ど"
+        "t": "ど"
       },
       {
         "t": "の"
@@ -6115,17 +5842,11 @@
     ],
     "sentence": [
       {
-        "t": "何の話？"
+        "t": "どの話も面白い。"
       }
     ],
-    "sentenceFr": "De quoi vous parlez ?",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "ど"
-      }
-    ]
+    "sentenceFr": "Toutes les histoires sont intéressantes.",
+    "kanjis": []
   },
   {
     "id": "w-1vf3ozi",
@@ -7045,16 +6766,18 @@
     ]
   },
   {
-    "id": "w-tvg3yh",
+    "id": "w-ua3m4i",
     "frequencyRank": 363,
-    "word": "致す",
+    "word": "いたす",
     "reading": "いたす",
     "meaning": "faire",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "致",
-        "r": "いた"
+        "t": "い"
+      },
+      {
+        "t": "た"
       },
       {
         "t": "す"
@@ -7062,17 +6785,11 @@
     ],
     "sentence": [
       {
-        "t": "理論と実際がぴったり一致することはまれである。"
+        "t": "着いた。"
       }
     ],
-    "sentenceFr": "Une entente parfaite entre la théorie et la pratique est quelque chose de rare.",
-    "kanjis": [
-      {
-        "char": "致",
-        "meaning": "faire",
-        "readingInWord": "いた"
-      }
-    ]
+    "sentenceFr": "Je suis arrivé.",
+    "kanjis": []
   },
   {
     "id": "w-yw00ll",
@@ -7460,36 +7177,27 @@
     ]
   },
   {
-    "id": "w-12ucuos",
+    "id": "w-1hccku2",
     "frequencyRank": 379,
-    "word": "何故",
+    "word": "なぜ",
     "reading": "なぜ",
     "meaning": "comment",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "何故",
-        "r": "なぜ"
+        "t": "な"
+      },
+      {
+        "t": "ぜ"
       }
     ],
     "sentence": [
       {
-        "t": "何故そう思うの？"
+        "t": "なぜ？"
       }
     ],
-    "sentenceFr": "Pourquoi pensez-vous ça ?",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "なぜ"
-      },
-      {
-        "char": "故",
-        "meaning": "coïncidence",
-        "readingInWord": "なぜ"
-      }
-    ]
+    "sentenceFr": "Pourquoi ?",
+    "kanjis": []
   },
   {
     "id": "w-1vdmm9c",
@@ -7675,16 +7383,21 @@
     ]
   },
   {
-    "id": "w-18oith6",
+    "id": "w-1gwdt7e",
     "frequencyRank": 386,
-    "word": "殆ど",
+    "word": "ほとんど",
     "reading": "ほとんど",
     "meaning": "la plupart",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "殆",
-        "r": "ほとん"
+        "t": "ほ"
+      },
+      {
+        "t": "と"
+      },
+      {
+        "t": "ん"
       },
       {
         "t": "ど"
@@ -7692,17 +7405,11 @@
     ],
     "sentence": [
       {
-        "t": "私は、玩具をもった記憶がない、と云ったが、殆ど、間食をした記憶もなかった。"
+        "t": "彼はほとんど働かない。"
       }
     ],
-    "sentenceFr": "J'ai mentionné que je n'avais pas souvenir d'avoir eu des jouets, et je n'ai pas non plus souvenir d'avoir eu des en-cas entre les repas.",
-    "kanjis": [
-      {
-        "char": "殆",
-        "meaning": "almost",
-        "readingInWord": "ほとん"
-      }
-    ]
+    "sentenceFr": "Il travaille à peine.",
+    "kanjis": []
   },
   {
     "id": "w-1ldhnj0",
@@ -8098,36 +7805,6 @@
     ]
   },
   {
-    "id": "w-yhm7la",
-    "frequencyRank": 401,
-    "word": "或る",
-    "reading": "ある",
-    "meaning": "un certain...",
-    "pos": "adjectif",
-    "wordRuby": [
-      {
-        "k": "或",
-        "r": "あ"
-      },
-      {
-        "t": "る"
-      }
-    ],
-    "sentence": [
-      {
-        "t": "君に或る物を見せましょう。"
-      }
-    ],
-    "sentenceFr": "Je vais te montrer quelque chose.",
-    "kanjis": [
-      {
-        "char": "或",
-        "meaning": "un certain",
-        "readingInWord": "あ"
-      }
-    ]
-  },
-  {
     "id": "w-1pbfacy",
     "frequencyRank": 402,
     "word": "車",
@@ -8391,36 +8068,33 @@
     ]
   },
   {
-    "id": "w-w91y3s",
+    "id": "w-1yxngwq",
     "frequencyRank": 412,
-    "word": "勿論",
+    "word": "もちろん",
     "reading": "もちろん",
     "meaning": "bien sûr",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "勿論",
-        "r": "もちろん"
+        "t": "も"
+      },
+      {
+        "t": "ち"
+      },
+      {
+        "t": "ろ"
+      },
+      {
+        "t": "ん"
       }
     ],
     "sentence": [
       {
-        "t": "勿論最初の約束優先ということで謝ったわ。"
+        "t": "もちろん！"
       }
     ],
-    "sentenceFr": "Bien entendu je me suis excusé, en précisant que le premier rendez-vous était prioritaire.",
-    "kanjis": [
-      {
-        "char": "勿",
-        "meaning": "ne pas (négation)",
-        "readingInWord": "もちろん"
-      },
-      {
-        "char": "論",
-        "meaning": "argumentation",
-        "readingInWord": "もちろん"
-      }
-    ]
+    "sentenceFr": "Bien sûr !",
+    "kanjis": []
   },
   {
     "id": "w-1gh2i8q",
@@ -8487,16 +8161,18 @@
     ]
   },
   {
-    "id": "w-5fcw6d",
+    "id": "w-gcn89u",
     "frequencyRank": 415,
-    "word": "余り",
+    "word": "あまり",
     "reading": "あまり",
     "meaning": "plus que",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "余",
-        "r": "あま"
+        "t": "あ"
+      },
+      {
+        "t": "ま"
       },
       {
         "t": "り"
@@ -8504,17 +8180,11 @@
     ],
     "sentence": [
       {
-        "t": "そのような犯罪は憎んでも余りある。"
+        "t": "あまり見えない。"
       }
     ],
-    "sentenceFr": "Un tel crime est franchement abominable.",
-    "kanjis": [
-      {
-        "char": "余",
-        "meaning": "trop",
-        "readingInWord": "あま"
-      }
-    ]
+    "sentenceFr": "Je le vois rarement.",
+    "kanjis": []
   },
   {
     "id": "w-129e84e",
@@ -8768,44 +8438,44 @@
     ]
   },
   {
-    "id": "w-jej614",
+    "id": "w-iebvbu",
     "frequencyRank": 425,
-    "word": "其々",
+    "word": "それぞれ",
     "reading": "それぞれ",
     "meaning": "chacun",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "其々",
-        "r": "それぞれ"
-      }
-    ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
-      {
-        "char": "其",
-        "meaning": "cela",
-        "readingInWord": "それぞれ"
+        "t": "そ"
       },
       {
-        "char": "々",
-        "meaning": "—",
-        "readingInWord": "それぞれ"
+        "t": "れ"
+      },
+      {
+        "t": "ぞ"
+      },
+      {
+        "t": "れ"
       }
-    ]
+    ],
+    "sentence": [
+      {
+        "t": "彼らはそれぞれ賞をもらった。"
+      }
+    ],
+    "sentenceFr": "Chacun d'eux a reçu un prix.",
+    "kanjis": []
   },
   {
-    "id": "w-1c1dzaq",
+    "id": "w-i6d78m",
     "frequencyRank": 426,
-    "word": "詰まり",
+    "word": "つまり",
     "reading": "つまり",
     "meaning": "c'est-à-dire",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "詰",
-        "r": "つ"
+        "t": "つ"
       },
       {
         "t": "ま"
@@ -8816,29 +8486,22 @@
     ],
     "sentence": [
       {
-        "t": "満員電車の中は息が詰まりそうだった。"
+        "t": "つまり彼女は下手な踊り子だ。"
       }
     ],
-    "sentenceFr": "J'ai pensé que j'allais étouffer dans ce train bondé.",
-    "kanjis": [
-      {
-        "char": "詰",
-        "meaning": "hermétiquement clos",
-        "readingInWord": "つ"
-      }
-    ]
+    "sentenceFr": "En un mot, elle est mauvaise danseuse.",
+    "kanjis": []
   },
   {
-    "id": "w-kokxh9",
+    "id": "w-1hpggpm",
     "frequencyRank": 427,
-    "word": "若し",
+    "word": "もし",
     "reading": "もし",
     "meaning": "si",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "若",
-        "r": "も"
+        "t": "も"
       },
       {
         "t": "し"
@@ -8846,17 +8509,11 @@
     ],
     "sentence": [
       {
-        "t": "何人も、拷問又は残虐な、非人道的な若しくは屈辱的な取扱若しくは刑罰を受けることはない。"
+        "t": "もしもし。"
       }
     ],
-    "sentenceFr": "Nul ne sera soumis à la torture, ni à des peines ou traitements cruels, inhumains ou dégradants.",
-    "kanjis": [
-      {
-        "char": "若",
-        "meaning": "jeune",
-        "readingInWord": "も"
-      }
-    ]
+    "sentenceFr": "Allô !",
+    "kanjis": []
   },
   {
     "id": "w-13yhzat",
@@ -9396,16 +9053,18 @@
     ]
   },
   {
-    "id": "w-118zbv0",
+    "id": "w-1mg92io",
     "frequencyRank": 448,
-    "word": "既に",
+    "word": "すでに",
     "reading": "すでに",
     "meaning": "déjà",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "既",
-        "r": "すで"
+        "t": "す"
+      },
+      {
+        "t": "で"
       },
       {
         "t": "に"
@@ -9413,17 +9072,11 @@
     ],
     "sentence": [
       {
-        "t": "既に手に負えない状態だ。"
+        "t": "電車はすでに出発した。"
       }
     ],
-    "sentenceFr": "Désormais, la situation est incontrôlable.",
-    "kanjis": [
-      {
-        "char": "既",
-        "meaning": "déjà",
-        "readingInWord": "すで"
-      }
-    ]
+    "sentenceFr": "Le train est déjà parti.",
+    "kanjis": []
   },
   {
     "id": "w-11ba1qs",
@@ -9458,16 +9111,18 @@
     ]
   },
   {
-    "id": "w-ox3lsk",
+    "id": "w-fu70vo",
     "frequencyRank": 450,
-    "word": "更に",
+    "word": "さらに",
     "reading": "さらに",
     "meaning": "d'ailleurs",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "更",
-        "r": "さら"
+        "t": "さ"
+      },
+      {
+        "t": "ら"
       },
       {
         "t": "に"
@@ -9475,17 +9130,11 @@
     ],
     "sentence": [
       {
-        "t": "更に質問がありますか。"
+        "t": "さらに質問はありますか。"
       }
     ],
     "sentenceFr": "Avez-vous d'autres questions ?",
-    "kanjis": [
-      {
-        "char": "更",
-        "meaning": "se faire tard",
-        "readingInWord": "さら"
-      }
-    ]
+    "kanjis": []
   },
   {
     "id": "w-j9f8n7",
@@ -10404,30 +10053,30 @@
     ]
   },
   {
-    "id": "w-admenm",
+    "id": "w-1teh4b2",
     "frequencyRank": 487,
-    "word": "迚も",
+    "word": "とても",
     "reading": "とても",
     "meaning": "très",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "迚",
-        "r": "とて"
+        "t": "と"
+      },
+      {
+        "t": "て"
       },
       {
         "t": "も"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "迚",
-        "meaning": "some way or other",
-        "readingInWord": "とて"
+        "t": "とてもいいよ。"
       }
-    ]
+    ],
+    "sentenceFr": "C'est très bon.",
+    "kanjis": []
   },
   {
     "id": "w-l85aii",
@@ -10971,36 +10620,30 @@
     ]
   },
   {
-    "id": "w-1owa4l2",
+    "id": "w-1317e0s",
     "frequencyRank": 510,
-    "word": "此方",
+    "word": "こちら",
     "reading": "こちら",
     "meaning": "par ici (direction proche du locuteur ou vers lui)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "此方",
-        "r": "こちら"
+        "t": "こ"
+      },
+      {
+        "t": "ち"
+      },
+      {
+        "t": "ら"
       }
     ],
     "sentence": [
       {
-        "t": "その頃は自転車の流行り出した始めで、下手な素人がそこでも此処でも人を轢いたり、塀を突き破ったりした。"
+        "t": "こちらに来なさい。"
       }
     ],
-    "sentenceFr": "En ce temps-là, les bicyclettes commençaient juste à devenir populaires, et çà et là, il y avait de nombreux débutants qui bousculaient les gens et passaient à travers leurs haies.",
-    "kanjis": [
-      {
-        "char": "此",
-        "meaning": "ici",
-        "readingInWord": "こちら"
-      },
-      {
-        "char": "方",
-        "meaning": "direction",
-        "readingInWord": "こちら"
-      }
-    ]
+    "sentenceFr": "Viens ici.",
+    "kanjis": []
   },
   {
     "id": "w-1laf9wg",
@@ -11570,36 +11213,30 @@
     ]
   },
   {
-    "id": "w-18m0g6q",
+    "id": "w-1vy7gm4",
     "frequencyRank": 532,
-    "word": "可成",
+    "word": "かなり",
     "reading": "かなり",
     "meaning": "fortement",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "可成",
-        "r": "かなり"
+        "t": "か"
+      },
+      {
+        "t": "な"
+      },
+      {
+        "t": "り"
       }
     ],
     "sentence": [
       {
-        "t": "可愛いよ。"
+        "t": "かなり寒い。"
       }
     ],
-    "sentenceFr": "Tu es mignon.",
-    "kanjis": [
-      {
-        "char": "可",
-        "meaning": "possible",
-        "readingInWord": "かなり"
-      },
-      {
-        "char": "成",
-        "meaning": "se changer en",
-        "readingInWord": "かなり"
-      }
-    ]
+    "sentenceFr": "Il fait assez froid.",
+    "kanjis": []
   },
   {
     "id": "w-a98xq5",
@@ -11988,31 +11625,27 @@
     ]
   },
   {
-    "id": "w-ar1zpo",
+    "id": "w-1h6ddzu",
     "frequencyRank": 553,
-    "word": "唯",
+    "word": "ただ",
     "reading": "ただ",
     "meaning": "ordinaire",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "唯",
-        "r": "ただ"
+        "t": "た"
+      },
+      {
+        "t": "だ"
       }
     ],
     "sentence": [
       {
-        "t": "彼が唯一の容疑者だ。"
+        "t": "言っただろ！"
       }
     ],
-    "sentenceFr": "Il est notre unique suspect.",
-    "kanjis": [
-      {
-        "char": "唯",
-        "meaning": "seulement",
-        "readingInWord": "ただ"
-      }
-    ]
+    "sentenceFr": "Je te l'avais dit !",
+    "kanjis": []
   },
   {
     "id": "w-eeuvac",
@@ -13203,16 +12836,18 @@
     ]
   },
   {
-    "id": "w-13hspim",
+    "id": "w-2ymske",
     "frequencyRank": 603,
-    "word": "旨い",
+    "word": "うまい",
     "reading": "うまい",
     "meaning": "habile",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "旨",
-        "r": "うま"
+        "t": "う"
+      },
+      {
+        "t": "ま"
       },
       {
         "t": "い"
@@ -13220,17 +12855,11 @@
     ],
     "sentence": [
       {
-        "t": "彼の論旨は筋が通っていた。"
+        "t": "もう言うまい。"
       }
     ],
-    "sentenceFr": "Son argument était logique.",
-    "kanjis": [
-      {
-        "char": "旨",
-        "meaning": "délicieux",
-        "readingInWord": "うま"
-      }
-    ]
+    "sentenceFr": "Je n'en dirai pas plus.",
+    "kanjis": []
   },
   {
     "id": "w-186w88g",
@@ -13887,16 +13516,18 @@
     ]
   },
   {
-    "id": "w-dbbksv",
+    "id": "w-1cuy9eg",
     "frequencyRank": 625,
-    "word": "凄い",
+    "word": "すごい",
     "reading": "すごい",
     "meaning": "terrible",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "凄",
-        "r": "すご"
+        "t": "す"
+      },
+      {
+        "t": "ご"
       },
       {
         "t": "い"
@@ -13904,17 +13535,11 @@
     ],
     "sentence": [
       {
-        "t": "そいつは凄い！"
+        "t": "すごいぞ！"
       }
     ],
-    "sentenceFr": "C'est incroyable !",
-    "kanjis": [
-      {
-        "char": "凄",
-        "meaning": "uncanny",
-        "readingInWord": "すご"
-      }
-    ]
+    "sentenceFr": "Génial !",
+    "kanjis": []
   },
   {
     "id": "w-kvjh57",
@@ -14535,36 +14160,30 @@
     ]
   },
   {
-    "id": "w-1xf1xiz",
+    "id": "w-6sdtd4",
     "frequencyRank": 647,
-    "word": "何方",
+    "word": "どちら",
     "reading": "どちら",
     "meaning": "quelle direction",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "何方",
-        "r": "どちら"
+        "t": "ど"
+      },
+      {
+        "t": "ち"
+      },
+      {
+        "t": "ら"
       }
     ],
     "sentence": [
       {
-        "t": "何？"
+        "t": "どちらさまですか？"
       }
     ],
-    "sentenceFr": "Quoi ?",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "どちら"
-      },
-      {
-        "char": "方",
-        "meaning": "direction",
-        "readingInWord": "どちら"
-      }
-    ]
+    "sentenceFr": "À qui ai-je l'honneur ?",
+    "kanjis": []
   },
   {
     "id": "w-f48sb",
@@ -15796,16 +15415,15 @@
     ]
   },
   {
-    "id": "w-m4ovva",
+    "id": "w-ftc8hy",
     "frequencyRank": 696,
-    "word": "為さる",
+    "word": "なさる",
     "reading": "なさる",
     "meaning": "faire",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "為",
-        "r": "な"
+        "t": "な"
       },
       {
         "t": "さ"
@@ -15816,17 +15434,11 @@
     ],
     "sentence": [
       {
-        "t": "誤らざる者是れ何も為さざる者のみなり。"
+        "t": "お父さんが引退なさるときにはあの人が後を継ぐのです。"
       }
     ],
-    "sentenceFr": "Il n'y a que ceux qui ne font rien qui ne font pas d'erreurs.",
-    "kanjis": [
-      {
-        "char": "為",
-        "meaning": "faire",
-        "readingInWord": "な"
-      }
-    ]
+    "sentenceFr": "Il reprendra l'affaire une fois son père à la retraite.",
+    "kanjis": []
   },
   {
     "id": "w-4dila9",
@@ -16145,36 +15757,33 @@
     ]
   },
   {
-    "id": "w-10iu1sp",
+    "id": "w-1m7gwai",
     "frequencyRank": 707,
-    "word": "色々",
+    "word": "いろいろ",
     "reading": "いろいろ",
     "meaning": "divers",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "色々",
-        "r": "いろいろ"
+        "t": "い"
+      },
+      {
+        "t": "ろ"
+      },
+      {
+        "t": "い"
+      },
+      {
+        "t": "ろ"
       }
     ],
     "sentence": [
       {
-        "t": "色々ありがとう。"
+        "t": "いろいろご親切にありがとう。"
       }
     ],
-    "sentenceFr": "Merci pour tout.",
-    "kanjis": [
-      {
-        "char": "色",
-        "meaning": "couleur",
-        "readingInWord": "いろいろ"
-      },
-      {
-        "char": "々",
-        "meaning": "—",
-        "readingInWord": "いろいろ"
-      }
-    ]
+    "sentenceFr": "Merci pour votre gentillesse.",
+    "kanjis": []
   },
   {
     "id": "w-1ig989y",
@@ -16893,16 +16502,18 @@
     ]
   },
   {
-    "id": "w-3ka0er",
+    "id": "w-sox0c2",
     "frequencyRank": 734,
-    "word": "何れ",
+    "word": "いずれ",
     "reading": "いずれ",
     "meaning": "où",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "何",
-        "r": "いず"
+        "t": "い"
+      },
+      {
+        "t": "ず"
       },
       {
         "t": "れ"
@@ -16910,17 +16521,11 @@
     ],
     "sentence": [
       {
-        "t": "何？"
+        "t": "人間はいずれ死ぬのだ。"
       }
     ],
-    "sentenceFr": "Quoi ?",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "いず"
-      }
-    ]
+    "sentenceFr": "L'homme mourra tôt ou tard.",
+    "kanjis": []
   },
   {
     "id": "w-1qccxso",
@@ -17114,36 +16719,27 @@
     ]
   },
   {
-    "id": "w-1bzb0tt",
+    "id": "w-1h7i97e",
     "frequencyRank": 741,
-    "word": "駄目",
+    "word": "だめ",
     "reading": "だめ",
     "meaning": "nul",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "駄目",
-        "r": "だめ"
+        "t": "だ"
+      },
+      {
+        "t": "め"
       }
     ],
     "sentence": [
       {
-        "t": "諦めちゃ駄目だ。"
+        "t": "もうだめだ。"
       }
     ],
-    "sentenceFr": "N'abandonne pas.",
-    "kanjis": [
-      {
-        "char": "駄",
-        "meaning": "fardeau",
-        "readingInWord": "だめ"
-      },
-      {
-        "char": "目",
-        "meaning": "oeil",
-        "readingInWord": "だめ"
-      }
-    ]
+    "sentenceFr": "C’est mort.",
+    "kanjis": []
   },
   {
     "id": "w-bgjj8u",
@@ -17656,16 +17252,15 @@
     ]
   },
   {
-    "id": "w-obfvec",
+    "id": "w-1gr7fju",
     "frequencyRank": 760,
-    "word": "彼れ",
+    "word": "あれ",
     "reading": "あれ",
     "meaning": "çà (indique quelque chose de distant du locuteur et de l'auditeur, (dans le temps, l'espace ou psychologiquement), ou quelque chose de compréhensible implicitement)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "彼",
-        "r": "あ"
+        "t": "あ"
       },
       {
         "t": "れ"
@@ -17673,17 +17268,11 @@
     ],
     "sentence": [
       {
-        "t": "彼は誰？"
+        "t": "あれ誰？"
       }
     ],
-    "sentenceFr": "C'est qui, lui ?",
-    "kanjis": [
-      {
-        "char": "彼",
-        "meaning": "lui",
-        "readingInWord": "あ"
-      }
-    ]
+    "sentenceFr": "Qui est-ce ?",
+    "kanjis": []
   },
   {
     "id": "w-aleawe",
@@ -17808,27 +17397,27 @@
     ]
   },
   {
-    "id": "w-ejec4k",
+    "id": "w-1hc1322",
     "frequencyRank": 766,
-    "word": "猶",
+    "word": "なお",
     "reading": "なお",
     "meaning": "d'autre part",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "猶",
-        "r": "なお"
+        "t": "な"
+      },
+      {
+        "t": "お"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "猶",
-        "meaning": "en outre",
-        "readingInWord": "なお"
+        "t": "大きなお世話だ。"
       }
-    ]
+    ],
+    "sentenceFr": "Mêle-toi de tes affaires.",
+    "kanjis": []
   },
   {
     "id": "w-1ujz181",
@@ -17863,16 +17452,15 @@
     ]
   },
   {
-    "id": "w-1tmrvi8",
+    "id": "w-1r43a3m",
     "frequencyRank": 769,
-    "word": "止める",
+    "word": "やめる",
     "reading": "やめる",
     "meaning": "arrêter (une activité)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "止",
-        "r": "や"
+        "t": "や"
       },
       {
         "t": "め"
@@ -17883,17 +17471,11 @@
     ],
     "sentence": [
       {
-        "t": "ガスを止めるの忘れた！"
+        "t": "私は永遠に煙草をやめるでしょう。"
       }
     ],
-    "sentenceFr": "J'ai oublié de couper le gaz !",
-    "kanjis": [
-      {
-        "char": "止",
-        "meaning": "arrêter",
-        "readingInWord": "や"
-      }
-    ]
+    "sentenceFr": "Je vais arrêter de fumer pour de bon.",
+    "kanjis": []
   },
   {
     "id": "w-160qo6u",
@@ -18049,31 +17631,27 @@
     ]
   },
   {
-    "id": "w-bafx9i",
+    "id": "w-1hqscsa",
     "frequencyRank": 775,
-    "word": "奴",
+    "word": "やつ",
     "reading": "やつ",
     "meaning": "individu",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "奴",
-        "r": "やつ"
+        "t": "や"
+      },
+      {
+        "t": "つ"
       }
     ],
     "sentence": [
       {
-        "t": "嫌な奴。"
+        "t": "暇なやつだ。"
       }
     ],
-    "sentenceFr": "Un sale type.",
-    "kanjis": [
-      {
-        "char": "奴",
-        "meaning": "mec",
-        "readingInWord": "やつ"
-      }
-    ]
+    "sentenceFr": "N'avez-vous rien de mieux à faire ?",
+    "kanjis": []
   },
   {
     "id": "w-5bvwn1",
@@ -18112,16 +17690,18 @@
     ]
   },
   {
-    "id": "w-owub4f",
+    "id": "w-7yp122",
     "frequencyRank": 777,
-    "word": "美味しい",
+    "word": "おいしい",
     "reading": "おいしい",
     "meaning": "bon",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "美味",
-        "r": "おい"
+        "t": "お"
+      },
+      {
+        "t": "い"
       },
       {
         "t": "し"
@@ -18132,22 +17712,11 @@
     ],
     "sentence": [
       {
-        "t": "これは美味しい。"
+        "t": "とてもおいしいよ。"
       }
     ],
-    "sentenceFr": "C'est délicieux.",
-    "kanjis": [
-      {
-        "char": "美",
-        "meaning": "beauté",
-        "readingInWord": "おい"
-      },
-      {
-        "char": "味",
-        "meaning": "goût",
-        "readingInWord": "おい"
-      }
-    ]
+    "sentenceFr": "C’est très bon.",
+    "kanjis": []
   },
   {
     "id": "w-1udo4f7",
@@ -18298,36 +17867,33 @@
     ]
   },
   {
-    "id": "w-yumv2c",
+    "id": "w-wlpda2",
     "frequencyRank": 783,
-    "word": "中々",
+    "word": "なかなか",
     "reading": "なかなか",
     "meaning": "très",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "中々",
-        "r": "なかなか"
+        "t": "な"
+      },
+      {
+        "t": "か"
+      },
+      {
+        "t": "な"
+      },
+      {
+        "t": "か"
       }
     ],
     "sentence": [
       {
-        "t": "中古だよ。"
+        "t": "彼はなかなか自信が強い。"
       }
     ],
-    "sentenceFr": "Elle est d'occasion.",
-    "kanjis": [
-      {
-        "char": "中",
-        "meaning": "dans",
-        "readingInWord": "なかなか"
-      },
-      {
-        "char": "々",
-        "meaning": "—",
-        "readingInWord": "なかなか"
-      }
-    ]
+    "sentenceFr": "Il a beaucoup de confiance en lui-même.",
+    "kanjis": []
   },
   {
     "id": "w-6rxnzm",
@@ -19084,16 +18650,15 @@
     ]
   },
   {
-    "id": "w-m90o9d",
+    "id": "w-1hc9dwa",
     "frequencyRank": 811,
-    "word": "無し",
+    "word": "なし",
     "reading": "なし",
     "meaning": "sans",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "無",
-        "r": "な"
+        "t": "な"
       },
       {
         "t": "し"
@@ -19101,17 +18666,11 @@
     ],
     "sentence": [
       {
-        "t": "忘れ物無し？"
+        "t": "問題なし。"
       }
     ],
-    "sentenceFr": "As-tu oublié quelque chose ?",
-    "kanjis": [
-      {
-        "char": "無",
-        "meaning": "néant",
-        "readingInWord": "な"
-      }
-    ]
+    "sentenceFr": "Aucun problème.",
+    "kanjis": []
   },
   {
     "id": "w-5kyubf",
@@ -20192,16 +19751,18 @@
     ]
   },
   {
-    "id": "w-qhlswf",
+    "id": "w-k2jowu",
     "frequencyRank": 852,
-    "word": "積り",
+    "word": "つもり",
     "reading": "つもり",
     "meaning": "intention",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "積",
-        "r": "つも"
+        "t": "つ"
+      },
+      {
+        "t": "も"
       },
       {
         "t": "り"
@@ -20209,17 +19770,11 @@
     ],
     "sentence": [
       {
-        "t": "塵も積もれば山となる。"
+        "t": "新車を買うつもりだ。"
       }
     ],
-    "sentenceFr": "Les petits ruisseaux font les grandes rivières.",
-    "kanjis": [
-      {
-        "char": "積",
-        "meaning": "volume",
-        "readingInWord": "つも"
-      }
-    ]
+    "sentenceFr": "Je compte m'acheter une nouvelle voiture.",
+    "kanjis": []
   },
   {
     "id": "w-ev21tn",
@@ -21224,36 +20779,33 @@
     ]
   },
   {
-    "id": "w-vzhkxl",
+    "id": "w-1ohx9mi",
     "frequencyRank": 894,
-    "word": "沢山",
+    "word": "たくさん",
     "reading": "たくさん",
     "meaning": "beaucoup",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "沢山",
-        "r": "たくさん"
+        "t": "た"
+      },
+      {
+        "t": "く"
+      },
+      {
+        "t": "さ"
+      },
+      {
+        "t": "ん"
       }
     ],
     "sentence": [
       {
-        "t": "そんなに沢山パンに乗るんか？"
+        "t": "たくさん欲しい。"
       }
     ],
-    "sentenceFr": "Tu mets vraiment tout ça dans le sandwich ?",
-    "kanjis": [
-      {
-        "char": "沢",
-        "meaning": "marais",
-        "readingInWord": "たくさん"
-      },
-      {
-        "char": "山",
-        "meaning": "montagne",
-        "readingInWord": "たくさん"
-      }
-    ]
+    "sentenceFr": "J'en veux plein.",
+    "kanjis": []
   },
   {
     "id": "w-cq99u0",
@@ -21343,16 +20895,15 @@
     ]
   },
   {
-    "id": "w-w6yoqu",
+    "id": "w-1hcnfmi",
     "frequencyRank": 899,
-    "word": "何れ",
+    "word": "どれ",
     "reading": "どれ",
     "meaning": "lequel (d'un groupe d'au moins trois)",
     "pos": "pronom",
     "wordRuby": [
       {
-        "k": "何",
-        "r": "ど"
+        "t": "ど"
       },
       {
         "t": "れ"
@@ -21360,17 +20911,11 @@
     ],
     "sentence": [
       {
-        "t": "何？"
+        "t": "どれどれ。"
       }
     ],
-    "sentenceFr": "Quoi ?",
-    "kanjis": [
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "ど"
-      }
-    ]
+    "sentenceFr": "Voyons.",
+    "kanjis": []
   },
   {
     "id": "w-108arn9",
@@ -22479,16 +22024,15 @@
     ]
   },
   {
-    "id": "w-16zachd",
+    "id": "w-104v1tm",
     "frequencyRank": 943,
-    "word": "無くなる",
+    "word": "なくなる",
     "reading": "なくなる",
     "meaning": "être perdu (par ex. un bagage)",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "無",
-        "r": "な"
+        "t": "な"
       },
       {
         "t": "く"
@@ -22502,17 +22046,11 @@
     ],
     "sentence": [
       {
-        "t": "もう待つ気が無くなった。"
+        "t": "時々、彼のことが信じられなくなる。"
       }
     ],
-    "sentenceFr": "Je ne suis pas d'humeur à attendre plus longtemps.",
-    "kanjis": [
-      {
-        "char": "無",
-        "meaning": "néant",
-        "readingInWord": "な"
-      }
-    ]
+    "sentenceFr": "Parfois je ne peux pas lui faire confiance.",
+    "kanjis": []
   },
   {
     "id": "w-smr5tw",
@@ -23091,16 +22629,21 @@
     ]
   },
   {
-    "id": "w-k9qoj9",
+    "id": "w-eqo8be",
     "frequencyRank": 966,
-    "word": "確り",
+    "word": "しっかり",
     "reading": "しっかり",
     "meaning": "bien serré",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "確",
-        "r": "しっか"
+        "t": "し"
+      },
+      {
+        "t": "っ"
+      },
+      {
+        "t": "か"
       },
       {
         "t": "り"
@@ -23108,49 +22651,40 @@
     ],
     "sentence": [
       {
-        "t": "確かに。"
+        "t": "しっかり頑張ってこい。"
       }
     ],
-    "sentenceFr": "Effectivement.",
-    "kanjis": [
-      {
-        "char": "確",
-        "meaning": "certitude",
-        "readingInWord": "しっか"
-      }
-    ]
+    "sentenceFr": "Vas-y et gagne !",
+    "kanjis": []
   },
   {
-    "id": "w-1bhhax4",
+    "id": "w-i64lru",
     "frequencyRank": 967,
-    "word": "所謂",
+    "word": "いわゆる",
     "reading": "いわゆる",
     "meaning": "comme on dit",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "所謂",
-        "r": "いわゆる"
+        "t": "い"
+      },
+      {
+        "t": "わ"
+      },
+      {
+        "t": "ゆ"
+      },
+      {
+        "t": "る"
       }
     ],
     "sentence": [
       {
-        "t": "台所はどこ？"
+        "t": "彼はいわゆる教養人だ。"
       }
     ],
-    "sentenceFr": "Où est la cuisine ?",
-    "kanjis": [
-      {
-        "char": "所",
-        "meaning": "lieu",
-        "readingInWord": "いわゆる"
-      },
-      {
-        "char": "謂",
-        "meaning": "reason",
-        "readingInWord": "いわゆる"
-      }
-    ]
+    "sentenceFr": "Il est ce qu'on appelle un homme cultivé.",
+    "kanjis": []
   },
   {
     "id": "w-1p98lp8",
@@ -23185,16 +22719,21 @@
     ]
   },
   {
-    "id": "w-16xgxud",
+    "id": "w-1rzto62",
     "frequencyRank": 969,
-    "word": "暫く",
+    "word": "しばらく",
     "reading": "しばらく",
     "meaning": "un peu de temps",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "暫",
-        "r": "しばら"
+        "t": "し"
+      },
+      {
+        "t": "ば"
+      },
+      {
+        "t": "ら"
       },
       {
         "t": "く"
@@ -23202,17 +22741,11 @@
     ],
     "sentence": [
       {
-        "t": "われわれはその会合を暫定的に月曜日ときめています。それは変更することがあります。"
+        "t": "彼はしばらくの間休んだ。"
       }
     ],
-    "sentenceFr": "Nous avons fixé provisoirement la réunion à lundi. Cette date est susceptible d'être modifiée.",
-    "kanjis": [
-      {
-        "char": "暫",
-        "meaning": "un certain temps",
-        "readingInWord": "しばら"
-      }
-    ]
+    "sentenceFr": "Il s'est reposé un moment.",
+    "kanjis": []
   },
   {
     "id": "w-s50t5p",
@@ -24061,31 +23594,27 @@
     ]
   },
   {
-    "id": "w-dlrohs",
+    "id": "w-1h0gr3u",
     "frequencyRank": 1001,
-    "word": "毎",
+    "word": "ごと",
     "reading": "ごと",
     "meaning": "chaque",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "毎",
-        "r": "ごと"
+        "t": "ご"
+      },
+      {
+        "t": "と"
       }
     ],
     "sentence": [
       {
-        "t": "毎年行きます。"
+        "t": "２０分ごとにバスがある。"
       }
     ],
-    "sentenceFr": "J'y vais tous les ans.",
-    "kanjis": [
-      {
-        "char": "毎",
-        "meaning": "chaque",
-        "readingInWord": "ごと"
-      }
-    ]
+    "sentenceFr": "Il y a un bus toutes les 20 minutes.",
+    "kanjis": []
   },
   {
     "id": "w-70wr8x",
@@ -25853,16 +25382,21 @@
     ]
   },
   {
-    "id": "w-ivme92",
+    "id": "w-e3zwe2",
     "frequencyRank": 1064,
-    "word": "可愛い",
+    "word": "かわいい",
     "reading": "かわいい",
     "meaning": "mignon",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "可愛",
-        "r": "かわい"
+        "t": "か"
+      },
+      {
+        "t": "わ"
+      },
+      {
+        "t": "い"
       },
       {
         "t": "い"
@@ -25870,22 +25404,11 @@
     ],
     "sentence": [
       {
-        "t": "可愛いよ。"
+        "t": "彼女はとてもかわいい。"
       }
     ],
-    "sentenceFr": "Tu es mignon.",
-    "kanjis": [
-      {
-        "char": "可",
-        "meaning": "possible",
-        "readingInWord": "かわい"
-      },
-      {
-        "char": "愛",
-        "meaning": "amour",
-        "readingInWord": "かわい"
-      }
-    ]
+    "sentenceFr": "Elle est très mignonne.",
+    "kanjis": []
   },
   {
     "id": "w-1nx6d6s",
@@ -28006,16 +27529,18 @@
     ]
   },
   {
-    "id": "w-1qwx674",
+    "id": "w-1yl9of4",
     "frequencyRank": 1151,
-    "word": "酷い",
+    "word": "ひどい",
     "reading": "ひどい",
     "meaning": "cruel",
     "pos": "adjectif",
     "wordRuby": [
       {
-        "k": "酷",
-        "r": "ひど"
+        "t": "ひ"
+      },
+      {
+        "t": "ど"
       },
       {
         "t": "い"
@@ -28023,17 +27548,11 @@
     ],
     "sentence": [
       {
-        "t": "何と酷い天気だ。"
+        "t": "ひどい天気！"
       }
     ],
-    "sentenceFr": "Quel temps horrible.",
-    "kanjis": [
-      {
-        "char": "酷",
-        "meaning": "cruel",
-        "readingInWord": "ひど"
-      }
-    ]
+    "sentenceFr": "Quel temps horrible !",
+    "kanjis": []
   },
   {
     "id": "w-6o1f4q",
@@ -28127,36 +27646,27 @@
     ]
   },
   {
-    "id": "w-17856ix",
+    "id": "w-1h3obve",
     "frequencyRank": 1155,
-    "word": "所為",
+    "word": "せい",
     "reading": "せい",
     "meaning": "conséquence",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "所為",
-        "r": "せい"
+        "t": "せ"
+      },
+      {
+        "t": "い"
       }
     ],
     "sentence": [
       {
-        "t": "台所はどこ？"
+        "t": "私のせい？"
       }
     ],
-    "sentenceFr": "Où est la cuisine ?",
-    "kanjis": [
-      {
-        "char": "所",
-        "meaning": "lieu",
-        "readingInWord": "せい"
-      },
-      {
-        "char": "為",
-        "meaning": "faire",
-        "readingInWord": "せい"
-      }
-    ]
+    "sentenceFr": "C'est ma faute ?",
+    "kanjis": []
   },
   {
     "id": "w-18rwjrc",
@@ -28596,16 +28106,18 @@
     ]
   },
   {
-    "id": "w-a4co6n",
+    "id": "w-1e9h52y",
     "frequencyRank": 1173,
-    "word": "丸で",
+    "word": "まるで",
     "reading": "まるで",
     "meaning": "tout à fait",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "丸",
-        "r": "まる"
+        "t": "ま"
+      },
+      {
+        "t": "る"
       },
       {
         "t": "で"
@@ -28613,17 +28125,11 @@
     ],
     "sentence": [
       {
-        "t": "彼は弾丸で負傷した。"
+        "t": "正解をまるで囲みなさい。"
       }
     ],
-    "sentenceFr": "Il fut blessé par une balle.",
-    "kanjis": [
-      {
-        "char": "丸",
-        "meaning": "rond",
-        "readingInWord": "まる"
-      }
-    ]
+    "sentenceFr": "Entourez la bonne réponse, s'il vous plaît.",
+    "kanjis": []
   },
   {
     "id": "w-8y18yw",
@@ -29129,16 +28635,18 @@
     ]
   },
   {
-    "id": "w-zkhorm",
+    "id": "w-1jktjua",
     "frequencyRank": 1197,
-    "word": "寧ろ",
+    "word": "むしろ",
     "reading": "むしろ",
     "meaning": "assez",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "寧",
-        "r": "むし"
+        "t": "む"
+      },
+      {
+        "t": "し"
       },
       {
         "t": "ろ"
@@ -29146,17 +28654,11 @@
     ],
     "sentence": [
       {
-        "t": "コップ類を丁寧に扱いなさい。"
+        "t": "むしろ奇妙だ。"
       }
     ],
-    "sentenceFr": "Manipulez les verres avec précaution.",
-    "kanjis": [
-      {
-        "char": "寧",
-        "meaning": "plutôt",
-        "readingInWord": "むし"
-      }
-    ]
+    "sentenceFr": "C'est plutôt étrange.",
+    "kanjis": []
   },
   {
     "id": "w-1ef28cr",
@@ -29381,16 +28883,18 @@
     ]
   },
   {
-    "id": "w-16s0t78",
+    "id": "w-h72is0",
     "frequencyRank": 1207,
-    "word": "参る",
+    "word": "まいる",
     "reading": "まいる",
     "meaning": "aller",
     "pos": "verbe",
     "wordRuby": [
       {
-        "k": "参",
-        "r": "まい"
+        "t": "ま"
+      },
+      {
+        "t": "い"
       },
       {
         "t": "る"
@@ -29398,17 +28902,11 @@
     ],
     "sentence": [
       {
-        "t": "暑いの苦手なんで、この暑さにはほんと参るわぁ。"
+        "t": "もう言うまい。"
       }
     ],
-    "sentenceFr": "Je n'aime pas quand il fait si chaud, c'est d'une chaleur à en mourir.",
-    "kanjis": [
-      {
-        "char": "参",
-        "meaning": "dérouté",
-        "readingInWord": "まい"
-      }
-    ]
+    "sentenceFr": "Je n'en dirai pas plus.",
+    "kanjis": []
   },
   {
     "id": "w-18337om",
@@ -29657,16 +29155,18 @@
     ]
   },
   {
-    "id": "w-1vanz0i",
+    "id": "w-l33gge",
     "frequencyRank": 1217,
-    "word": "如何に",
+    "word": "いかに",
     "reading": "いかに",
     "meaning": "à quel point",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "如何",
-        "r": "いか"
+        "t": "い"
+      },
+      {
+        "t": "か"
       },
       {
         "t": "に"
@@ -29674,22 +29174,11 @@
     ],
     "sentence": [
       {
-        "t": "成功するかどうかは、君自身の努力の如何による。"
+        "t": "そんな事を言うとはいかにも彼らしい。"
       }
     ],
-    "sentenceFr": "Le fait que tu réussisses ou non dépend de tes efforts.",
-    "kanjis": [
-      {
-        "char": "如",
-        "meaning": "ressemblance",
-        "readingInWord": "いか"
-      },
-      {
-        "char": "何",
-        "meaning": "quoi",
-        "readingInWord": "いか"
-      }
-    ]
+    "sentenceFr": "Cela lui ressemble en effet beaucoup de dire cela.",
+    "kanjis": []
   },
   {
     "id": "w-1b6lyog",
@@ -29853,36 +29342,27 @@
     ]
   },
   {
-    "id": "w-1glrl2a",
+    "id": "w-1hfchqy",
     "frequencyRank": 1224,
-    "word": "馬鹿",
+    "word": "ばか",
     "reading": "ばか",
     "meaning": "chose insignifiante",
     "pos": "nom",
     "wordRuby": [
       {
-        "k": "馬鹿",
-        "r": "ばか"
+        "t": "ば"
+      },
+      {
+        "t": "か"
       }
     ],
     "sentence": [
       {
-        "t": "馬鹿みたい！"
+        "t": "トムのばか！"
       }
     ],
-    "sentenceFr": "T'as l'air stupide.",
-    "kanjis": [
-      {
-        "char": "馬",
-        "meaning": "cheval",
-        "readingInWord": "ばか"
-      },
-      {
-        "char": "鹿",
-        "meaning": "cerf",
-        "readingInWord": "ばか"
-      }
-    ]
+    "sentenceFr": "Imbécile de Tom !",
+    "kanjis": []
   },
   {
     "id": "w-22rsl2",
@@ -30169,16 +29649,18 @@
     ]
   },
   {
-    "id": "w-1t3h2n6",
+    "id": "w-or8ovi",
     "frequencyRank": 1234,
-    "word": "正に",
+    "word": "まさに",
     "reading": "まさに",
     "meaning": "exactement",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "正",
-        "r": "まさ"
+        "t": "ま"
+      },
+      {
+        "t": "さ"
       },
       {
         "t": "に"
@@ -30186,17 +29668,11 @@
     ],
     "sentence": [
       {
-        "t": "正にそれが私の考えです。"
+        "t": "それはまさに奇跡だった。"
       }
     ],
-    "sentenceFr": "C'est ce que je pense en effet.",
-    "kanjis": [
-      {
-        "char": "正",
-        "meaning": "correct",
-        "readingInWord": "まさ"
-      }
-    ]
+    "sentenceFr": "C'était vraiment un miracle.",
+    "kanjis": []
   },
   {
     "id": "w-oozc87",
@@ -30232,16 +29708,18 @@
     ]
   },
   {
-    "id": "w-1t5hzy5",
+    "id": "w-1b0eday",
     "frequencyRank": 1236,
-    "word": "恐らく",
+    "word": "おそらく",
     "reading": "おそらく",
     "meaning": "peut-être",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "恐",
-        "r": "おそ"
+        "t": "お"
+      },
+      {
+        "t": "そ"
       },
       {
         "t": "ら"
@@ -30250,15 +29728,13 @@
         "t": "く"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "恐",
-        "meaning": "peur",
-        "readingInWord": "おそ"
+        "t": "彼はおそらく来るだろう。"
       }
-    ]
+    ],
+    "sentenceFr": "Il va peut-être venir.",
+    "kanjis": []
   },
   {
     "id": "w-l003a1",
@@ -30475,30 +29951,30 @@
     ]
   },
   {
-    "id": "w-ma4e2q",
+    "id": "w-11gcvya",
     "frequencyRank": 1246,
-    "word": "軈て",
+    "word": "やがて",
     "reading": "やがて",
     "meaning": "bientôt",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "軈",
-        "r": "やが"
+        "t": "や"
+      },
+      {
+        "t": "が"
       },
       {
         "t": "て"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
-    "kanjis": [
+    "sentence": [
       {
-        "char": "軈",
-        "meaning": "soon after",
-        "readingInWord": "やが"
+        "t": "すべての人間はやがて死ぬ。"
       }
-    ]
+    ],
+    "sentenceFr": "Tous les êtres humains sont mortels.",
+    "kanjis": []
   },
   {
     "id": "w-135k20h",
@@ -30595,35 +30071,95 @@
     ]
   },
   {
-    "id": "w-wk75v0",
+    "id": "w-1sdz8nu",
     "frequencyRank": 1250,
-    "word": "兎に角",
+    "word": "とにかく",
     "reading": "とにかく",
     "meaning": "d'une façon ou d'une autre",
     "pos": "adverbe",
     "wordRuby": [
       {
-        "k": "兎に角",
-        "r": "とにかく"
+        "t": "と"
+      },
+      {
+        "t": "に"
+      },
+      {
+        "t": "か"
+      },
+      {
+        "t": "く"
       }
     ],
-    "sentence": [],
-    "sentenceFr": "",
+    "sentence": [
+      {
+        "t": "とにかく有難う。"
+      }
+    ],
+    "sentenceFr": "Merci tout de même.",
+    "kanjis": []
+  },
+  {
+    "id": "w-17e93zf",
+    "frequencyRank": 1251,
+    "word": "一体",
+    "reading": "いったい",
+    "meaning": "... diable (par ex. « que diable ? »)",
+    "pos": "adverbe",
+    "wordRuby": [
+      {
+        "k": "一体",
+        "r": "いったい"
+      }
+    ],
+    "sentence": [
+      {
+        "t": "一体何をしているのだ。"
+      }
+    ],
+    "sentenceFr": "Mais que diable es-tu en train de faire ?",
     "kanjis": [
       {
-        "char": "兎",
-        "meaning": "rabbit",
-        "readingInWord": "とにかく"
+        "char": "一",
+        "meaning": "un",
+        "readingInWord": "いったい"
       },
       {
-        "char": "に",
-        "meaning": "—",
-        "readingInWord": "とにかく"
+        "char": "体",
+        "meaning": "corps",
+        "readingInWord": "いったい"
+      }
+    ]
+  },
+  {
+    "id": "w-917vxk",
+    "frequencyRank": 1251,
+    "word": "提出",
+    "reading": "ていしゅつ",
+    "meaning": "présentation",
+    "pos": "nom",
+    "wordRuby": [
+      {
+        "k": "提出",
+        "r": "ていしゅつ"
+      }
+    ],
+    "sentence": [
+      {
+        "t": "提出！"
+      }
+    ],
+    "sentenceFr": "Remis !",
+    "kanjis": [
+      {
+        "char": "提",
+        "meaning": "proposition",
+        "readingInWord": "ていしゅつ"
       },
       {
-        "char": "角",
-        "meaning": "angle",
-        "readingInWord": "とにかく"
+        "char": "出",
+        "meaning": "sortir",
+        "readingInWord": "ていしゅつ"
       }
     ]
   }

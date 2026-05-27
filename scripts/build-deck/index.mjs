@@ -44,6 +44,13 @@ function slugId(word, reading) {
   return `w-${(h >>> 0).toString(36)}`;
 }
 
+// Hiragana, katakana, ou CJK kanji. Filtre les entrées ascii / ponctuation
+// pleine largeur (．, ・…) qui peuvent leak depuis JMdict.
+const JAPANESE_CHAR = /[぀-ヿ一-鿿]/;
+function isJapaneseWord(s) {
+  return JAPANESE_CHAR.test(s);
+}
+
 async function main() {
   log('1/5 BCCWJ :', SCAN_DEPTH, 'entrées scannées (target =', TARGET_COUNT, ')');
   const bccwj = loadBccwjEntries('data/raw/bccwj-suw', SCAN_DEPTH);
@@ -66,32 +73,52 @@ async function main() {
   let withExample = 0;
   let withFrSense = 0;
 
+  let droppedJunk = 0;
+  let kanaSwapped = 0;
   for (const e of bccwj) {
     scanned++;
     if (deck.length >= TARGET_COUNT) break;
+
+    // Filtre les non-mots (ponctuation pleine largeur, symboles…).
+    if (!isJapaneseWord(e.word)) {
+      droppedJunk++;
+      continue;
+    }
+
     const dictHit = pickBestJmdictEntry(jmdict, e.word, e.reading);
     if (!dictHit || !isContentPos(dictHit.pos)) continue;
-    const dedupeKey = `${e.word}:${e.reading}`;
+
+    // « Usually written in kana » → on bascule l'affichage sur la forme kana.
+    // La forme dictionnaire (kanji) reste connue de JMdict mais on apprend
+    // l'écriture la plus courante. Recherche de l'exemple aussi sur la forme
+    // kana — c'est elle qu'on retrouvera majoritairement dans Tatoeba.
+    let displayWord = e.word;
+    let displayReading = e.reading;
+    if (dictHit.usuallyKana) {
+      displayWord = e.reading;
+      kanaSwapped++;
+    }
+
+    const dedupeKey = `${displayWord}:${displayReading}`;
     if (seen.has(dedupeKey)) continue;
     seen.add(dedupeKey);
 
-    const meaning =
-      dictHit.glossFr ?? dictHit.glossEn ?? '—';
+    const meaning = dictHit.glossFr ?? dictHit.glossEn ?? '—';
     if (dictHit.glossFr) withFrSense++;
 
-    const wordRuby = buildWordRuby(e.word, e.reading);
-    const kanjis = buildKanjisBreakdown(e.word, e.reading, kanjidic);
+    const wordRuby = buildWordRuby(displayWord, displayReading);
+    const kanjis = buildKanjisBreakdown(displayWord, displayReading, kanjidic);
 
-    const ex = findExample(pairs, e.word);
+    const ex = findExample(pairs, displayWord) ?? findExample(pairs, e.word);
     if (ex) withExample++;
     const sentence = ex ? [{ t: ex.ja }] : [];
     const sentenceFr = ex?.fr ?? '';
 
     deck.push({
-      id: slugId(e.word, e.reading),
+      id: slugId(displayWord, displayReading),
       frequencyRank: e.rank,
-      word: e.word,
-      reading: e.reading,
+      word: displayWord,
+      reading: displayReading,
       meaning,
       pos: dictHit.pos,
       wordRuby,
@@ -105,6 +132,8 @@ async function main() {
   log('Stats :', {
     scanned,
     kept,
+    droppedJunk,
+    kanaSwapped,
     withFrSense,
     withExample,
     targetReached: kept >= TARGET_COUNT,
