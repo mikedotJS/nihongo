@@ -1,11 +1,11 @@
 import type { Word } from '../types';
+import generated from './deck.generated.json';
 
 /**
- * Jeu de test réduit, comme demandé par le brief — les 6 mots de la
- * section 7 du brief design. À remplacer par le deck fréquentiel réel
- * (BCCWJ, env. 1000–2000 rangs) une fois fourni.
+ * Jeu de test minimal — les 6 mots du brief design. Utilisé uniquement si
+ * `deck.generated.json` est vide ou manquant (pas commit, etc.).
  */
-export const SEED_DECK: Word[] = [
+const FALLBACK_SEED: Word[] = [
   {
     id: 'w-watashi',
     frequencyRank: 1,
@@ -117,3 +117,13 @@ export const SEED_DECK: Word[] = [
     ],
   },
 ];
+
+/**
+ * Le deck consommé par l'app : top 1000 BCCWJ généré par
+ * `scripts/build-deck/index.mjs` (BCCWJ + JMdict + Tatoeba + kanjidic2).
+ * Si la génération est absente, on retombe sur le seed minimal.
+ */
+export const SEED_DECK: Word[] =
+  Array.isArray(generated) && generated.length > 0
+    ? (generated as unknown as Word[])
+    : FALLBACK_SEED;

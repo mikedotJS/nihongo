@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Données brutes pour générer le deck (téléchargées par scripts/build-deck).
+# Le résultat (src/data/deck.generated.json) est, lui, commité.
+data/raw/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

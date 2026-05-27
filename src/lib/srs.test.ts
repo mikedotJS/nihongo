@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { State } from 'ts-fsrs';
-import { SEED_DECK } from '../data/deck';
 import { DEFAULT_SETTINGS } from './storage';
 import {
   ANTI_DROWNING_ABSOLUTE,
@@ -13,9 +12,31 @@ import {
   phaseFor,
   previewIntervals,
 } from './srs';
-import type { ReviewState } from '../types';
+import type { ReviewState, Word } from '../types';
 
 const T0 = new Date('2026-05-24T12:00:00Z');
+
+// Fixtures locales — indépendantes du deck généré.
+function mkWord(id: string, rank: number): Word {
+  return {
+    id,
+    frequencyRank: rank,
+    word: '',
+    reading: '',
+    meaning: '',
+    pos: '',
+    wordRuby: [],
+    sentence: [],
+    sentenceFr: '',
+    kanjis: [],
+  };
+}
+
+const WORDS: Word[] = [
+  mkWord('w-a', 1),
+  mkWord('w-b', 2),
+  mkWord('w-c', 3),
+];
 
 describe('antiDrowningThreshold', () => {
   it('caps below the absolute floor of 100', () => {
@@ -31,7 +52,7 @@ describe('antiDrowningThreshold', () => {
 
 describe('makeInitialReviewState', () => {
   it('creates a New card stamped with now', () => {
-    const w = SEED_DECK[0];
+    const w = WORDS[0];
     const s = makeInitialReviewState(w, T0);
     expect(s.wordId).toBe(w.id);
     expect(s.updatedAt).toBe(T0.getTime());
@@ -42,7 +63,7 @@ describe('makeInitialReviewState', () => {
 
 describe('applyRating', () => {
   it('moves the card forward and bumps updatedAt', () => {
-    const initial = makeInitialReviewState(SEED_DECK[0], T0);
+    const initial = makeInitialReviewState(WORDS[0], T0);
     const later = new Date('2026-05-25T12:00:00Z');
     const next = applyRating(initial, 'Correct', later);
     expect(next.updatedAt).toBe(later.getTime());
@@ -53,7 +74,7 @@ describe('applyRating', () => {
   });
 
   it('penalizes Encore with a shorter next-due than Facile', () => {
-    const initial = makeInitialReviewState(SEED_DECK[0], T0);
+    const initial = makeInitialReviewState(WORDS[0], T0);
     const again = applyRating(initial, 'Encore', T0);
     const easy = applyRating(initial, 'Facile', T0);
     expect(easy.fsrs.due.getTime()).toBeGreaterThan(again.fsrs.due.getTime());
@@ -62,7 +83,7 @@ describe('applyRating', () => {
 
 describe('previewIntervals', () => {
   it('returns the 4 ordered intervals (Encore < Difficile < Correct < Facile in practice)', () => {
-    const s = makeInitialReviewState(SEED_DECK[0], T0);
+    const s = makeInitialReviewState(WORDS[0], T0);
     const i = previewIntervals(s, T0);
     expect(Object.keys(i)).toEqual(['Encore', 'Difficile', 'Correct', 'Facile']);
     expect(i.Encore).toMatch(/[mhja]$|maintenant/);
@@ -86,7 +107,7 @@ describe('formatInterval', () => {
 });
 
 describe('buildSessionQueue', () => {
-  const words = SEED_DECK;
+  const words = WORDS;
   const settings = { ...DEFAULT_SETTINGS, newCardsPerDay: 3 };
   const now = T0;
 
@@ -99,20 +120,16 @@ describe('buildSessionQueue', () => {
     });
     expect(out.duesCount).toBe(0);
     expect(out.newsCount).toBe(3);
-    expect(out.queue).toEqual(['w-watashi', 'w-taberu', 'w-hito']);
+    expect(out.queue).toEqual(['w-a', 'w-b', 'w-c']);
     expect(out.suspendedNews).toBe(false);
   });
 
   it('puts overdue reviews first, then new cards', () => {
-    // Mark `w-taberu` as due 1h ago.
     const reviewStates: Record<string, ReviewState> = {
-      'w-taberu': {
-        wordId: 'w-taberu',
+      'w-b': {
+        wordId: 'w-b',
         fsrs: {
-          ...makeInitialReviewState(
-            words.find((w) => w.id === 'w-taberu')!,
-            new Date('2026-05-23'),
-          ).fsrs,
+          ...makeInitialReviewState(WORDS[1], new Date('2026-05-23')).fsrs,
           state: State.Review,
           due: new Date('2026-05-24T11:00:00Z'),
         },
@@ -128,8 +145,8 @@ describe('buildSessionQueue', () => {
     });
     expect(out.duesCount).toBe(1);
     expect(out.newsCount).toBe(2);
-    expect(out.queue[0]).toBe('w-taberu');
-    expect(out.queue.slice(1)).toEqual(['w-watashi', 'w-hito']);
+    expect(out.queue[0]).toBe('w-b');
+    expect(out.queue.slice(1)).toEqual(['w-a', 'w-c']);
   });
 
   it('respects anti-drowning: suspends news when dues > threshold', () => {
@@ -171,23 +188,21 @@ describe('buildSessionQueue', () => {
   });
 
   it('orders dues by oldest-due first', () => {
-    const wA = words.find((w) => w.id === 'w-watashi')!;
-    const wB = words.find((w) => w.id === 'w-taberu')!;
     const reviewStates: Record<string, ReviewState> = {
-      [wA.id]: {
-        wordId: wA.id,
+      'w-a': {
+        wordId: 'w-a',
         fsrs: {
-          ...makeInitialReviewState(wA, new Date('2026-05-23')).fsrs,
+          ...makeInitialReviewState(WORDS[0], new Date('2026-05-23')).fsrs,
           state: State.Review,
           due: new Date('2026-05-24T11:00:00Z'), // 1h late
         },
         phase: 'review',
         updatedAt: 1,
       },
-      [wB.id]: {
-        wordId: wB.id,
+      'w-b': {
+        wordId: 'w-b',
         fsrs: {
-          ...makeInitialReviewState(wB, new Date('2026-05-23')).fsrs,
+          ...makeInitialReviewState(WORDS[1], new Date('2026-05-23')).fsrs,
           state: State.Review,
           due: new Date('2026-05-24T08:00:00Z'), // 4h late
         },
@@ -201,6 +216,6 @@ describe('buildSessionQueue', () => {
       settings: { ...DEFAULT_SETTINGS, newCardsPerDay: 0 },
       now,
     });
-    expect(out.queue).toEqual(['w-taberu', 'w-watashi']);
+    expect(out.queue).toEqual(['w-b', 'w-a']);
   });
 });
