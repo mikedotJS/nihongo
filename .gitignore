@@ -26,3 +26,8 @@ data/raw/
 *.njsproj
 *.sln
 *.sw?
+.env
+.env.*
+*.pem
+*.p12
+!.env.example
